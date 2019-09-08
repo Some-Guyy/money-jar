@@ -16,6 +16,8 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MoneyJarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MoneyJarTests.m */; };
 		09F0EB91E2B74EB6A9BBF5A5 /* Rye-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 849492EF4F2F402F90051A82 /* Rye-Regular.ttf */; };
+		02E516119DA54933B532A6BC /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 445982B7EC56484F88F633B7 /* Comfortaa-Regular.ttf */; };
+		188BD186D9434450B7CA3405 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05E70A82E9E1447AAFF6AF87 /* Montserrat-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		849492EF4F2F402F90051A82 /* Rye-Regular.ttf */ = {isa = PBXFileReference; name = "Rye-Regular.ttf"; path = "../assets/fonts/Rye-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		445982B7EC56484F88F633B7 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		05E70A82E9E1447AAFF6AF87 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 			isa = "PBXGroup";
 			children = (
 				849492EF4F2F402F90051A82 /* Rye-Regular.ttf */,
+				445982B7EC56484F88F633B7 /* Comfortaa-Regular.ttf */,
+				05E70A82E9E1447AAFF6AF87 /* Montserrat-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,6 +311,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				09F0EB91E2B74EB6A9BBF5A5 /* Rye-Regular.ttf in Resources */,
+				02E516119DA54933B532A6BC /* Comfortaa-Regular.ttf in Resources */,
+				188BD186D9434450B7CA3405 /* Montserrat-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

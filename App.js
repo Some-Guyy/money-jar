@@ -12,7 +12,7 @@ export default class HelloWorldApp extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: backgroundColor }}>
         <Header />
         {this.state.loggedIn == 'yes'
           ? <Authorized />
