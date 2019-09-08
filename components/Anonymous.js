@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-
-import Header from './layout/Header';
+import { View, Image, Text, TextInput, StyleSheet } from 'react-native';
 
 export default class Anonymous extends Component {
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Header />
-                <View style={{ alignItems: 'center', justifyContent: 'space-between', flex: 10 }}>
-                    <Text style={[styles.bodyText]}>MoneyJar, a simple but effective money manager.</Text>
-                    <Text style={{}}>Log In!</Text>
-                    <Text>Email</Text>
-                    <Text>Facebook</Text>
-                    <Text>Don't have an account?</Text>
-                    <Text>Sign up!</Text>
+            <View style={{ flex: 10 }}>
+                <View style={{ alignItems: 'center', flex: 1 }}>
+                    <Text style={{ flex: 1 }}></Text>
+                    <Text style={{ flex: 1 }}>Log In!</Text>
+                    {/* <TextInput style={{ flex: 1 }} onChangeText=> */}
+                    <Text style={{ flex: 1 }}>Password</Text>
+                    <Text style={{ flex: 1 }}>Don't have an account?</Text>
+                    <Text style={{ flex: 1 }}>Sign up!</Text>
                 </View>
             </View>
         );
@@ -23,7 +20,6 @@ export default class Anonymous extends Component {
 
 const styles = StyleSheet.create({
     bodyText: {
-        fontSize: 18,
-        justifyContent: 'space-between'
+        fontSize: 18
     }
 })

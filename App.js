@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
+import Header from './components/layout/Header';
 import Anonymous from './components/Anonymous';
 import Authorized from './components/Authorized';
 
@@ -11,7 +12,8 @@ export default class HelloWorldApp extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
+        <Header />
         {this.state.loggedIn == 'yes'
           ? <Authorized />
           : <Anonymous />
