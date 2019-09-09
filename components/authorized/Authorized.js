@@ -56,6 +56,19 @@ export default class Authorized extends Component {
         })
     }
 
+    addJarValue = (id, valueToAdd) => {
+        this.setState({
+            jars: this.state.jars.map(jar => {
+                if (jar.id === id) {
+                    jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
+                }
+                return jar;
+            }),
+            view: 'jarlist',
+            focusedJar: 'none'
+        });
+    }
+
     updateJar = (id, newName, newValue) => {
         this.setState({
             jars: this.state.jars.map(jar => {
@@ -90,7 +103,7 @@ export default class Authorized extends Component {
                     }
                 }
             ],
-            {cancelable: false}
+            { cancelable: false }
         )
 
     }
@@ -99,9 +112,12 @@ export default class Authorized extends Component {
         return (
             <View style={{ flex: 10 }}>
                 {this.state.view == 'jarlist'
-                    ? <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
+                    ? <View style={{ height: '90%' }}>
+                        <Text style={{ height: '10%', fontFamily: 'Rye-Regular', fontSize: 22, alignSelf: 'center', textAlignVertical: 'center' }}>Welcome, User!</Text>
+                        <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
+                    </View>
                     : (this.state.view == 'jarfocus'
-                        ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
+                        ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
                         : <View style={{ height: '90%' }}><Text>account</Text></View>
                     )
                 }

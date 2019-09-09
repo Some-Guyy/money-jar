@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default class Jar extends Component {
     render() {
         return (
-            <TouchableOpacity onPress={this.props.editJar.bind(this, this.props.jar)} style={{ height: 100, justifyContent: 'center', alignItems: 'center', borderColor: dominantColor, borderWidth: 1 }}>
+            <TouchableOpacity onPress={this.props.editJar.bind(this, this.props.jar)} style={{ height: 80, justifyContent: 'center', alignItems: 'center', borderColor: dominantColor, borderWidth: 1 }}>
                 <Text style={styles.bodyText}>{this.props.jar.name}</Text>
                 <Text style={[styles.bodyText, {fontSize: 16}]}>${parseFloat(this.props.jar.value).toFixed(2)}</Text>
             </TouchableOpacity>
