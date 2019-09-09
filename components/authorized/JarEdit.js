@@ -4,31 +4,52 @@ import PropTypes from 'prop-types';
 
 export default class JarEdit extends Component {
     state = {
-        addField: '',
-        modifyField: this.props.focusedJar.value.toString()
+        nameField: this.props.focusedJar.name,
+        modifyField: this.props.focusedJar.value.toString(),
+        addField: ''
     }
 
     render() {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
-                <Text style={{ height: '20%' }}></Text>
-                <Text style={[styles.bodyText, { height: '7%', fontSize: 20 }]}>{this.props.focusedJar.name}</Text>
+                <Text style={{ height: '10%' }}></Text>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
-                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Add </Text>
-                    <TextInput value={this.state.addField} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
+                    <TextInput value={this.state.nameField} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
+
                 <View style={{ height: '2%' }}></View>
+
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Modify </Text>
                     <TextInput value={this.state.modifyField} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
+
                 <View style={{ height: '5%' }}></View>
+
                 <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Delete Jar!</Text>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Update</Text>
                 </TouchableOpacity>
-                <View style={{ height: '44%' }}></View>
+
+                <View style={{ height: '5%' }}></View>
+
+                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: '#cc0000', padding: 10 }}>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Delete!</Text>
+                </TouchableOpacity>
+                <View style={{ height: '1%' }}></View>
+                <Text style={[styles.bodyText, {height: '6%', fontSize: 14}]}>Warning: Once you delete a jar, it's gone for good.</Text>
+
+                <View style={{ height: '5%' }}></View>
+
+                <Text style={[styles.bodyText, {height: '6%'}]}>Add to the jar!</Text>
+                <TextInput value={this.state.addField} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
+                <View style={{ height: '2%' }}></View>
+                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
+                </TouchableOpacity>
+                <View style={{ height: '13%' }}></View>
             </FadeInView>
         )
     }
