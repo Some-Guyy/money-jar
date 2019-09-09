@@ -1,12 +1,39 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React, { Component, useState, useEffect } from 'react';
+import { View, Text, Animated } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class Header extends Component {
     render() {
         return (
-            <View style={{ backgroundColor: dominantColor, justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                <Text style={{ fontFamily: 'Rye-Regular', color: accentColor, fontSize: 25 }}>Money Jar</Text>
-            </View>
+            <FadeInView style={{  flex: 1, backgroundColor: dominantColor, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: 'Rye-Regular', color: accentColor, fontSize: 25 }}>{this.props.header}</Text>
+            </FadeInView>
         );
     }
+}
+
+const FadeInView = (props) => {
+    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
+
+    useEffect(() => {
+        Animated.timing(
+            fadeAdmin,
+            {
+                toValue: 1,
+                duration: 1000,
+            }
+        ).start();
+    }, [])
+
+    return (
+        // Special animatable View
+        // Bind opacity to animated value
+        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
+            {props.children}
+        </Animated.View>
+    );
+}
+
+Header.propTypes = {
+    header: PropTypes.string
 }

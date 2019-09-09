@@ -1,13 +1,16 @@
 import React, { Component, useState, useEffect } from 'react';
-import { View, Image, Text, Animated } from 'react-native';
+import { Animated } from 'react-native';
+import PropTypes from 'prop-types';
 
-export default class Tabs extends Component {
+import Jar from './Jar';
+
+export default class JarList extends Component {
     render() {
-        return (
-            <FadeInView style={{ height: '10%', backgroundColor: dominantColor,  justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontFamily: 'Rye-Regular', color: accentColor, fontSize: 25 }}>Tabs Here.</Text>
+        return this.props.jars.map((jar) => (
+            <FadeInView key={jar.id}>
+                <Jar jar={jar} />
             </FadeInView>
-        );
+        ));
     }
 }
 
@@ -31,4 +34,8 @@ const FadeInView = (props) => {
             {props.children}
         </Animated.View>
     );
+}
+
+JarList.propTypes = {
+    jars: PropTypes.array
 }
