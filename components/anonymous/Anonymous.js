@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Login from './Login';
@@ -16,17 +16,14 @@ export default class Anonymous extends Component {
         return (
             <View style={{ flex: 10 }}>
                 {this.state.screen == 'login'
-                    ? <Login changeScreen={this.changeScreen} />
-                    : <Signup changeScreen={this.changeScreen} />
+                    ? <Login changeScreen={this.changeScreen} checkCredentials={this.props.checkCredentials} />
+                    : <Signup changeScreen={this.changeScreen} checkCredentials={this.props.checkCredentials} />
                 }
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    bodyText: {
-        fontFamily: 'Comfortaa-Regular',
-        fontSize: 16
-    }
-})
+Anonymous.propTypes = {
+    checkCredentials: PropTypes.func.isRequired
+}

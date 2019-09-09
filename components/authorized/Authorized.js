@@ -6,6 +6,7 @@ import Tabs from '../layout/Tabs';
 import JarList from './JarList';
 import JarEdit from './JarEdit';
 import JarNew from './JarNew';
+import Profile from './Profile';
 
 export default class Authorized extends Component {
     state = {
@@ -60,30 +61,55 @@ export default class Authorized extends Component {
     }
 
     addJarValue = (id, valueToAdd) => {
-        this.setState({
-            jars: this.state.jars.map(jar => {
-                if (jar.id === id) {
-                    jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
-                }
-                return jar;
-            }),
-            view: 'jarlist',
-            focusedJar: 'none'
-        });
+        if (valueToAdd == '') {
+            Alert.alert('Note', "Why are you trying to add nothing?")
+        } else {
+            this.setState({
+                jars: this.state.jars.map(jar => {
+                    if (jar.id === id) {
+                        jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
+                    }
+                    return jar;
+                }),
+                view: 'jarlist',
+                focusedJar: 'none'
+            });
+        }
+    }
+
+    addJar = (name, value) => {
+        if (name == '' || value == '') {
+            Alert.alert('Note', "Fields must not be empty!")
+        } else {
+            const newJar = {
+                id: 8,
+                name: name,
+                value: value
+            }
+            this.setState({
+                jars: [...this.state.jars, newJar],
+                view: 'jarlist',
+                focusedJar: 'none'
+            });
+        }
     }
 
     updateJar = (id, newName, newValue) => {
-        this.setState({
-            jars: this.state.jars.map(jar => {
-                if (jar.id === id) {
-                    jar.name = newName;
-                    jar.value = newValue;
-                }
-                return jar;
-            }),
-            view: 'jarlist',
-            focusedJar: 'none'
-        });
+        if (newName == '' || newValue == '') {
+            Alert.alert('Note', "Fields must not be empty!")
+        } else {
+            this.setState({
+                jars: this.state.jars.map(jar => {
+                    if (jar.id === id) {
+                        jar.name = newName;
+                        jar.value = newValue;
+                    }
+                    return jar;
+                }),
+                view: 'jarlist',
+                focusedJar: 'none'
+            });
+        }
     }
 
     deleteJar = (id) => {
@@ -122,8 +148,8 @@ export default class Authorized extends Component {
                     : (this.state.view == 'jarfocus'
                         ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
                         : (this.state.view == 'jarnew'
-                            ? <View style={{ height: '90%' }}><JarNew /></View>
-                            : <View style={{ height: '90%' }}><Text>account</Text></View>
+                            ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
+                            : <View style={{ height: '90%' }}><Profile checkCredentials={this.props.checkCredentials} /></View>
                         )
                     )
                 }
@@ -153,4 +179,8 @@ const FadeInView = (props) => {
             {props.children}
         </Animated.View>
     );
+}
+
+Authorized.propTypes = {
+    checkCredentials: PropTypes.func.isRequired
 }

@@ -1,0 +1,52 @@
+import React, { Component, useState, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Animated } from 'react-native';
+import PropTypes from 'prop-types';
+
+export default class Profile extends Component {
+    render() {
+        return (
+            <FadeInView style={{ alignItems: 'center' }}>
+                <View style={{ height: '10%' }}></View>
+                <Text style={[styles.bodyText, {height: '8%', fontSize: 20 }]}>User's Profile</Text>
+                <View style={{ height: '63%' }}></View>
+                <TouchableOpacity onPress={this.props.checkCredentials.bind(this, false, 'none', 'none')} style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Log out</Text>
+                </TouchableOpacity>
+                <View style={{ height: '10%' }}></View>
+            </FadeInView>
+        )
+    }
+}
+
+const FadeInView = (props) => {
+    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
+
+    useEffect(() => {
+        Animated.timing(
+            fadeAdmin,
+            {
+                toValue: 1,
+                duration: 500,
+            }
+        ).start();
+    }, [])
+
+    return (
+        // Special animatable View
+        // Bind opacity to animated value
+        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
+            {props.children}
+        </Animated.View>
+    );
+}
+
+const styles = StyleSheet.create({
+    bodyText: {
+        fontFamily: 'Comfortaa-Regular',
+        fontSize: 16
+    }
+})
+
+Profile.propTypes = {
+    checkCredentials: PropTypes.func.isRequired
+}

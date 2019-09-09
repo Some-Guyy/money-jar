@@ -45,7 +45,7 @@ export default class JarEdit extends Component {
     render() {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
-                <Text style={{ height: '10%' }}></Text>
+                <View style={{ height: '10%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
                     <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
@@ -55,7 +55,7 @@ export default class JarEdit extends Component {
                 <View style={{ height: '2%' }}></View>
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
-                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Modify </Text>
+                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Value </Text>
                     <TextInput value={this.state.valueField} onChangeText={(text) => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
@@ -68,7 +68,7 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '5%' }}></View>
 
-                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: '#cc0000', padding: 10 }}>
+                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Delete!</Text>
                 </TouchableOpacity>
                 <View style={{ height: '1%' }}></View>

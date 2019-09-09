@@ -28,7 +28,31 @@ export default class JarNew extends Component {
     render() {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
-                <Text>hi</Text>
+                <View style={{ height: '15%' }}></View>
+                <Text style={[styles.bodyText, { height: '8%', fontSize: 24}]}>Add a new Jar!</Text>
+
+                <View style={{ height: '2%' }}></View>
+
+                <View style={{ height: '7%', flexDirection: 'row' }}>
+                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
+                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <View style={{ width: '20%' }}></View>
+                </View>
+
+                <View style={{ height: '2%' }}></View>
+
+                <View style={{ height: '7%', flexDirection: 'row' }}>
+                    <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Value </Text>
+                    <TextInput value={this.state.valueField} onChangeText={(text) => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <View style={{ width: '20%' }}></View>
+                </View>
+
+                <View style={{ height: '5%' }}></View>
+
+                <TouchableOpacity onPress={this.props.addJar.bind(this, this.state.nameField, this.state.valueField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
+                </TouchableOpacity>
+                <View style={{ height: '46%' }}></View>
             </FadeInView>
         )
     }
@@ -62,3 +86,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 })
+
+JarNew.propTypes = {
+    addJar: PropTypes.func.isRequired
+}
