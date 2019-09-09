@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Alert } from 'react-native';
+import { View, ScrollView, Text, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Tabs from '../layout/Tabs';
@@ -56,12 +56,43 @@ export default class Authorized extends Component {
         })
     }
 
-    deleteJar = (id) => {
+    updateJar = (id, newName, newValue) => {
         this.setState({
-            jars: [...this.state.jars.filter(jar => jar.id !== id)],
+            jars: this.state.jars.map(jar => {
+                if (jar.id === id) {
+                    jar.name = newName;
+                    jar.value = newValue;
+                }
+                return jar;
+            }),
             view: 'jarlist',
             focusedJar: 'none'
-        })
+        });
+    }
+
+    deleteJar = (id) => {
+        Alert.alert(
+            'Warning',
+            "You are about to delete a jar. This action is irreversible! Are you sure you want to continue?",
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel'
+                },
+                {
+                    text: 'Delete',
+                    onPress: () => {
+                        this.setState({
+                            jars: [...this.state.jars.filter(jar => jar.id !== id)],
+                            view: 'jarlist',
+                            focusedJar: 'none'
+                        })
+                    }
+                }
+            ],
+            {cancelable: false}
+        )
+
     }
 
     render() {
@@ -69,7 +100,10 @@ export default class Authorized extends Component {
             <View style={{ flex: 10 }}>
                 {this.state.view == 'jarlist'
                     ? <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
-                    : <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} deleteJar={this.deleteJar} /></View>
+                    : (this.state.view == 'jarfocus'
+                        ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
+                        : <View style={{ height: '90%' }}><Text>account</Text></View>
+                    )
                 }
                 <Tabs />
             </View>

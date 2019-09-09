@@ -1,12 +1,29 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Animated, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class JarEdit extends Component {
     state = {
         nameField: this.props.focusedJar.name,
-        modifyField: this.props.focusedJar.value.toString(),
+        valueField: this.props.focusedJar.value.toString(),
         addField: ''
+    }
+
+    numbersOnly = (text) => {
+        let newText = '';
+        let numbers = '.0123456789';
+    
+        for (var i=0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) > -1 ) {
+                newText = newText + text[i];
+            } else if (text[i] == ' '){
+                // remove any auto-spacing that devices add in
+            } else {
+                // your call back function
+                Alert.alert('Note', "Please enter numbers only.");
+            }
+        }
+        this.setState({ valueField: newText });
     }
 
     render() {
@@ -15,7 +32,7 @@ export default class JarEdit extends Component {
                 <Text style={{ height: '10%' }}></Text>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
-                    <TextInput value={this.state.nameField} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
@@ -23,13 +40,13 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Modify </Text>
-                    <TextInput value={this.state.modifyField} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.valueField} onChangeText={(text) => this.numbersOnly(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
                 <View style={{ height: '5%' }}></View>
 
-                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                <TouchableOpacity onPress={this.props.updateJar.bind(this, this.props.focusedJar.id, this.state.nameField, this.state.valueField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Update</Text>
                 </TouchableOpacity>
 
@@ -44,9 +61,9 @@ export default class JarEdit extends Component {
                 <View style={{ height: '5%' }}></View>
 
                 <Text style={[styles.bodyText, {height: '6%'}]}>Add to the jar!</Text>
-                <TextInput value={this.state.addField} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
+                <TextInput value={this.state.addField} onChangeText={(text) => { this.setState({ addField: text})}} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
                 <View style={{ height: '2%' }}></View>
-                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
                 </TouchableOpacity>
                 <View style={{ height: '13%' }}></View>
@@ -86,5 +103,6 @@ const styles = StyleSheet.create({
 
 JarEdit.propTypes = {
     focusedJar: PropTypes.object.isRequired,
+    updateJar: PropTypes.func.isRequired,
     deleteJar: PropTypes.func.isRequired
 }
