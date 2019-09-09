@@ -45,7 +45,11 @@ export default class JarEdit extends Component {
     render() {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
-                <View style={{ height: '10%' }}></View>
+                <View style={{ height: '4%' }}></View>
+                <Text style={[styles.bodyText, {height: '10%', fontSize: 22 }]}>Jar Modification</Text>
+
+                <View style={{ height: '2%' }}></View>
+
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
                     <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
@@ -76,13 +80,13 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '5%' }}></View>
 
-                <Text style={[styles.bodyText, {height: '6%'}]}>Add to the jar!</Text>
+                <Text style={[styles.bodyText, {height: '6%'}]}>Or, simply add to the jar!</Text>
                 <TextInput value={this.state.addField} onChangeText={(text) => this.numbersOnlyAdd(text)} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
                 <View style={{ height: '2%' }}></View>
-                <TouchableOpacity onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                <TouchableOpacity onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
                 </TouchableOpacity>
-                <View style={{ height: '13%' }}></View>
+                <View style={{ height: '7%' }}></View>
             </FadeInView>
         )
     }

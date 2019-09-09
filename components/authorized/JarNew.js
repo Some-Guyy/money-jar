@@ -29,7 +29,7 @@ export default class JarNew extends Component {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
                 <View style={{ height: '15%' }}></View>
-                <Text style={[styles.bodyText, { height: '8%', fontSize: 24}]}>Add a new Jar!</Text>
+                <Text style={[styles.bodyText, { height: '8%', fontSize: 24}]}>Create a new Jar!</Text>
 
                 <View style={{ height: '2%' }}></View>
 
@@ -50,7 +50,7 @@ export default class JarNew extends Component {
                 <View style={{ height: '5%' }}></View>
 
                 <TouchableOpacity onPress={this.props.addJar.bind(this, this.state.nameField, this.state.valueField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
+                    <Text style={[styles.bodyText, { color: accentColor }]}>Create!</Text>
                 </TouchableOpacity>
                 <View style={{ height: '46%' }}></View>
             </FadeInView>
