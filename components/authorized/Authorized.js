@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { View, ScrollView, Text, Alert } from 'react-native';
+import React, { Component, useState, useEffect } from 'react';
+import { View, ScrollView, Text, Alert, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Tabs from '../layout/Tabs';
 import JarList from './JarList';
 import JarEdit from './JarEdit';
+import JarNew from './JarNew';
 
 export default class Authorized extends Component {
     state = {
@@ -48,6 +49,8 @@ export default class Authorized extends Component {
             }
         ]
     }
+
+    changeView = (view) => this.setState({ view: view })
 
     editJar = (jar) => {
         this.setState({
@@ -113,16 +116,41 @@ export default class Authorized extends Component {
             <View style={{ flex: 10 }}>
                 {this.state.view == 'jarlist'
                     ? <View style={{ height: '90%' }}>
-                        <Text style={{ height: '10%', fontFamily: 'Rye-Regular', fontSize: 22, alignSelf: 'center', textAlignVertical: 'center' }}>Welcome, User!</Text>
+                        <FadeInView style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, User!</Text></FadeInView>
                         <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
                     </View>
                     : (this.state.view == 'jarfocus'
                         ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
-                        : <View style={{ height: '90%' }}><Text>account</Text></View>
+                        : (this.state.view == 'jarnew'
+                            ? <View style={{ height: '90%' }}><JarNew /></View>
+                            : <View style={{ height: '90%' }}><Text>account</Text></View>
+                        )
                     )
                 }
-                <Tabs />
+                <Tabs changeView={this.changeView} />
             </View>
         );
     }
+}
+
+const FadeInView = (props) => {
+    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
+
+    useEffect(() => {
+        Animated.timing(
+            fadeAdmin,
+            {
+                toValue: 1,
+                duration: 500,
+            }
+        ).start();
+    }, [])
+
+    return (
+        // Special animatable View
+        // Bind opacity to animated value
+        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
+            {props.children}
+        </Animated.View>
+    );
 }

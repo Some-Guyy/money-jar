@@ -96,7 +96,7 @@ const FadeInView = (props) => {
             fadeAdmin,
             {
                 toValue: 1,
-                duration: 1000,
+                duration: 500,
             }
         ).start();
     }, [])
