@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Tabs from '../layout/Tabs';
 import JarList from './JarList';
+import JarEdit from './JarEdit';
 
 export default class Authorized extends Component {
     state = {
+        view: 'jarlist',
+        focusedJar: 'none',
         jars: [
             {
                 id: 1,
@@ -37,18 +40,37 @@ export default class Authorized extends Component {
                 id: 6,
                 name: 'Child Support',
                 value: 0.01
+            },
+            {
+                id: 7,
+                name: 'eat shit',
+                value: 6969.69
             }
         ]
     }
 
-    addJar = () => { }
+    editJar = (jar) => {
+        this.setState({
+            view: 'jarfocus',
+            focusedJar: jar
+        })
+    }
+
+    deleteJar = (id) => {
+        this.setState({
+            jars: [...this.state.jars.filter(jar => jar.id !== id)],
+            view: 'jarlist',
+            focusedJar: 'none'
+        })
+    }
 
     render() {
         return (
             <View style={{ flex: 10 }}>
-                <ScrollView style={{ height: '90%' }}>
-                    <JarList jars={this.state.jars} />
-                </ScrollView>
+                {this.state.view == 'jarlist'
+                    ? <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
+                    : <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} deleteJar={this.deleteJar} /></View>
+                }
                 <Tabs />
             </View>
         );

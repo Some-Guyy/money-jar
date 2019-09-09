@@ -8,7 +8,7 @@ export default class JarList extends Component {
     render() {
         return this.props.jars.map((jar) => (
             <FadeInView key={jar.id}>
-                <Jar jar={jar} />
+                <Jar jar={jar} editJar={this.props.editJar} />
             </FadeInView>
         ));
     }
@@ -37,5 +37,6 @@ const FadeInView = (props) => {
 }
 
 JarList.propTypes = {
-    jars: PropTypes.array
+    jars: PropTypes.array,
+    editJar: PropTypes.func.isRequired
 }
