@@ -7,7 +7,7 @@ import Authorized from './components/authorized/Authorized';
 
 export default class HelloWorldApp extends Component {
   state = {
-    loggedIn: 'yes',
+    loggedIn: 'no',
     header: 'Money Jar'
   }
 
