@@ -11,8 +11,9 @@ export default class Login extends Component {
     render() {
         return (
             <FadeInView style={{ flex: 1, alignItems: 'center' }}>
-                <Text style={{ height: '19%' }}></Text>
+                <View style={{ height: '18%' }}></View>
                 <Text style={[styles.bodyText, { height: '7%', fontSize: 20 }]}>Log into MoneyJar!</Text>
+                <View style={{ height: '1%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Email </Text>
                     <TextInput value={this.state.emailField} onChangeText={(text) => { this.setState({ emailField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
