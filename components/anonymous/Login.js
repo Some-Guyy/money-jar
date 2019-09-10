@@ -26,7 +26,7 @@ export default class Login extends Component {
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '5%' }}></View>
-                <TouchableOpacity onPress={this.props.checkCredentials.bind(this, true, this.state.emailField, this.state.passwordField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
+                <TouchableOpacity onPress={this.props.login.bind(this, this.state.emailField, this.state.passwordField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Log in!</Text>
                 </TouchableOpacity>
                 <View style={{ height: '35%' }}></View>
@@ -72,5 +72,5 @@ const styles = StyleSheet.create({
 
 Login.propTypes = {
     changeScreen: PropTypes.func.isRequired,
-    checkCredentials: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired
 }

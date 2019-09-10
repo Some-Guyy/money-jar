@@ -24,12 +24,24 @@ export default class HelloWorldApp extends Component {
     }
   }
 
-  checkCredentials = (status, email, password) => {
+  signup = (email, password) => {
     if (email == '' || password == '') {
-      Alert.alert('Note', "Fields must not be empty!")
+      Alert.alert('Error', "Fields must not be empty!")
     } else {
-      this.setState({ user: status })
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => Alert.alert('Error', err.toString()))
     }
+  }
+
+  login = (email, password) => {
+    if (email == '' || password == '') {
+      Alert.alert('Error', "Fields must not be empty!")
+    } else {
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(err => Alert.alert('Error', err.toString()))
+    }
+  }
+
+  logout = () => {
+    firebase.auth().signOut().then(() => this.setState({ user: null }))
   }
 
   render() {
@@ -37,8 +49,8 @@ export default class HelloWorldApp extends Component {
       <ImageBackground source={require('./assets/images/background.jpg')} style={{ flex: 1 }}>
         <Header header={'Money Jar'} />
         {!this.state.user
-          ? <Anonymous checkCredentials={this.checkCredentials} />
-          : <Authorized checkCredentials={this.checkCredentials} />
+          ? <Anonymous signup={this.signup} login={this.login} />
+          : <Authorized user={this.state.user} logout={this.logout} />
         }
       </ImageBackground>
     );

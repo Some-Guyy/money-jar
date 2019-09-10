@@ -62,7 +62,7 @@ export default class Authorized extends Component {
 
     addJarValue = (id, valueToAdd) => {
         if (valueToAdd == '') {
-            Alert.alert('Note', "Why are you trying to add nothing?")
+            Alert.alert('Error', "Why are you trying to add nothing?")
         } else {
             this.setState({
                 jars: this.state.jars.map(jar => {
@@ -79,7 +79,7 @@ export default class Authorized extends Component {
 
     addJar = (name, value) => {
         if (name == '' || value == '') {
-            Alert.alert('Note', "Fields must not be empty!")
+            Alert.alert('Error', "Fields must not be empty!")
         } else {
             const newJar = {
                 id: 8,
@@ -96,7 +96,7 @@ export default class Authorized extends Component {
 
     updateJar = (id, newName, newValue) => {
         if (newName == '' || newValue == '') {
-            Alert.alert('Note', "Fields must not be empty!")
+            Alert.alert('Error', "Fields must not be empty!")
         } else {
             this.setState({
                 jars: this.state.jars.map(jar => {
@@ -142,14 +142,14 @@ export default class Authorized extends Component {
             <View style={{ flex: 10 }}>
                 {this.state.view == 'jarlist'
                     ? <View style={{ height: '90%' }}>
-                        <FadeInView style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, User!</Text></FadeInView>
+                        <FadeInView style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></FadeInView>
                         <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
                     </View>
                     : (this.state.view == 'jarfocus'
                         ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
                         : (this.state.view == 'jarnew'
                             ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
-                            : <View style={{ height: '90%' }}><Profile checkCredentials={this.props.checkCredentials} jars={this.state.jars} /></View>
+                            : <View style={{ height: '90%' }}><Profile user={this.props.user} jars={this.state.jars} logout={this.props.logout} /></View>
                         )
                     )
                 }
@@ -182,5 +182,6 @@ const FadeInView = (props) => {
 }
 
 Authorized.propTypes = {
-    checkCredentials: PropTypes.func.isRequired
+    user: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
 }

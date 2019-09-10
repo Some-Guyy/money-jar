@@ -16,8 +16,8 @@ export default class Anonymous extends Component {
         return (
             <View style={{ flex: 10 }}>
                 {this.state.screen == 'login'
-                    ? <Login changeScreen={this.changeScreen} checkCredentials={this.props.checkCredentials} />
-                    : <Signup changeScreen={this.changeScreen} checkCredentials={this.props.checkCredentials} />
+                    ? <Login changeScreen={this.changeScreen} login={this.props.login} />
+                    : <Signup changeScreen={this.changeScreen} signup={this.props.signup} />
                 }
             </View>
         );
@@ -25,5 +25,6 @@ export default class Anonymous extends Component {
 }
 
 Anonymous.propTypes = {
-    checkCredentials: PropTypes.func.isRequired
+    signup: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
 }

@@ -18,7 +18,7 @@ export default class Profile extends Component {
                     </Text>
                 </View>
                 <View style={{ height: '45%' }}></View>
-                <TouchableOpacity onPress={this.props.checkCredentials.bind(this, false, 'none', 'none')} style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                <TouchableOpacity onPress={this.props.logout.bind(this)} style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
                     <Text style={[styles.bodyText, { color: accentColor }]}>Log out</Text>
                 </TouchableOpacity>
                 <View style={{ height: '10%' }}></View>
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 })
 
 Profile.propTypes = {
-    checkCredentials: PropTypes.func.isRequired,
-    jars: PropTypes.array
+    user: PropTypes.object.isRequired,
+    jars: PropTypes.array,
+    logout: PropTypes.func.isRequired
 }
