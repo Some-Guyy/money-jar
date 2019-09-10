@@ -12,11 +12,11 @@ export default class JarEdit extends Component {
     numbersOnlyValue = (text) => {
         let newText = '';
         let numbers = '-.0123456789';
-    
-        for (var i=0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1 ) {
+
+        for (var i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) > -1) {
                 newText = newText + text[i];
-            } else if (text[i] == ' '){
+            } else if (text[i] == ' ') {
                 // remove any auto-spacing that devices add in
             } else {
                 // your call back function
@@ -28,11 +28,11 @@ export default class JarEdit extends Component {
     numbersOnlyAdd = (text) => {
         let newText = '';
         let numbers = '-.0123456789';
-    
-        for (var i=0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1 ) {
+
+        for (var i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) > -1) {
                 newText = newText + text[i];
-            } else if (text[i] == ' '){
+            } else if (text[i] == ' ') {
                 // remove any auto-spacing that devices add in
             } else {
                 // your call back function
@@ -46,13 +46,13 @@ export default class JarEdit extends Component {
         return (
             <FadeInView style={{ alignItems: 'center' }}>
                 <View style={{ height: '4%' }}></View>
-                <Text style={[styles.bodyText, {height: '10%', fontSize: 22 }]}>Jar Modification</Text>
+                <Text style={[styles.bodyText, { height: '10%', fontSize: 22 }]}>Jar Modification</Text>
 
                 <View style={{ height: '2%' }}></View>
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
-                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
@@ -76,11 +76,11 @@ export default class JarEdit extends Component {
                     <Text style={[styles.bodyText, { color: accentColor }]}>Delete!</Text>
                 </TouchableOpacity>
                 <View style={{ height: '1%' }}></View>
-                <Text style={[styles.bodyText, {height: '6%', fontSize: 14}]}>Warning: Once you delete a jar, it's gone for good.</Text>
+                <Text style={[styles.bodyText, { height: '6%', fontSize: 14, textAlign: 'center' }]}>Warning: Once you delete a jar, it's gone for good.</Text>
 
                 <View style={{ height: '5%' }}></View>
 
-                <Text style={[styles.bodyText, {height: '6%'}]}>Or, simply add to the jar!</Text>
+                <Text style={[styles.bodyText, { height: '6%' }]}>Or, simply add to the jar!</Text>
                 <TextInput value={this.state.addField} onChangeText={(text) => this.numbersOnlyAdd(text)} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
                 <View style={{ height: '2%' }}></View>
                 <TouchableOpacity onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
