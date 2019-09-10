@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { View, ScrollView, Text, Alert, Animated } from 'react-native';
+import firebase from 'react-native-firebase';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
 import Tabs from '../layout/Tabs';
@@ -12,43 +14,14 @@ export default class Authorized extends Component {
     state = {
         view: 'jarlist',
         focusedJar: 'none',
-        jars: [
-            {
-                id: 1,
-                name: 'Savings',
-                value: 300.00
-            },
-            {
-                id: 2,
-                name: 'Transport',
-                value: 100.00
-            },
-            {
-                id: 3,
-                name: 'Bills',
-                value: 75.00
-            },
-            {
-                id: 4,
-                name: 'Gambling',
-                value: 69.00
-            },
-            {
-                id: 5,
-                name: 'Shopping',
-                value: 0.05
-            },
-            {
-                id: 6,
-                name: 'Child Support',
-                value: 0.01
-            },
-            {
-                id: 7,
-                name: 'eat shit',
-                value: 6969.69
-            }
-        ]
+        jars: ['none']
+    }
+    ref = firebase.firestore().collection('users').doc(this.props.user.uid)
+
+    componentDidMount = () => {
+        this.ref.get().then(doc => {
+            this.setState({ jars: doc.data()['jars'] })
+        }).catch(err => Alert.alert('Error', err.toString()));
     }
 
     changeView = (view) => this.setState({ view: view })
@@ -64,13 +37,13 @@ export default class Authorized extends Component {
         if (valueToAdd == '') {
             Alert.alert('Error', "Why are you trying to add nothing?")
         } else {
+            this.state.jars.map(jar => {
+                if (jar.id === id) {
+                    jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
+                }
+            });
+            this.ref.set({ jars: this.state.jars });
             this.setState({
-                jars: this.state.jars.map(jar => {
-                    if (jar.id === id) {
-                        jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
-                    }
-                    return jar;
-                }),
                 view: 'jarlist',
                 focusedJar: 'none'
             });
@@ -82,12 +55,13 @@ export default class Authorized extends Component {
             Alert.alert('Error', "Fields must not be empty!")
         } else {
             const newJar = {
-                id: 8,
+                id: uuid.v4(),
                 name: name,
                 value: value
             }
+            this.state.jars.push(newJar);
+            this.ref.set({ jars: this.state.jars });
             this.setState({
-                jars: [...this.state.jars, newJar],
                 view: 'jarlist',
                 focusedJar: 'none'
             });
@@ -98,14 +72,14 @@ export default class Authorized extends Component {
         if (newName == '' || newValue == '') {
             Alert.alert('Error', "Fields must not be empty!")
         } else {
+            this.state.jars.map(jar => {
+                if (jar.id === id) {
+                    jar.name = newName;
+                    jar.value = newValue;
+                }
+            });
+            this.ref.set({ jars: this.state.jars });
             this.setState({
-                jars: this.state.jars.map(jar => {
-                    if (jar.id === id) {
-                        jar.name = newName;
-                        jar.value = newValue;
-                    }
-                    return jar;
-                }),
                 view: 'jarlist',
                 focusedJar: 'none'
             });
@@ -124,8 +98,9 @@ export default class Authorized extends Component {
                 {
                     text: 'Delete',
                     onPress: () => {
+                        this.setState({ jars: [...this.state.jars.filter(jar => jar.id !== id)] })
+                        this.ref.set({ jars: this.state.jars })
                         this.setState({
-                            jars: [...this.state.jars.filter(jar => jar.id !== id)],
                             view: 'jarlist',
                             focusedJar: 'none'
                         })

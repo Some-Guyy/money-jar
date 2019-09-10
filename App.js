@@ -11,6 +11,7 @@ export default class HelloWorldApp extends Component {
     user: null
   }
   unsubscriber = null;
+  ref = firebase.firestore().collection('users');
 
   componentDidMount = () => {
     this.unsubscriber = firebase.auth().onAuthStateChanged((user) => {
@@ -28,7 +29,13 @@ export default class HelloWorldApp extends Component {
     if (email == '' || password == '') {
       Alert.alert('Error', "Fields must not be empty!")
     } else {
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => Alert.alert('Error', err.toString()))
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          this.ref.doc(this.state.user.uid).set({
+            jars: []
+          })
+        })
+        .catch(err => Alert.alert('Error', err.toString()))
     }
   }
 
@@ -41,7 +48,7 @@ export default class HelloWorldApp extends Component {
   }
 
   logout = () => {
-    firebase.auth().signOut().then(() => this.setState({ user: null }))
+    firebase.auth().signOut()
   }
 
   render() {
