@@ -149,7 +149,7 @@ export default class Authorized extends Component {
                         ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
                         : (this.state.view == 'jarnew'
                             ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
-                            : <View style={{ height: '90%' }}><Profile checkCredentials={this.props.checkCredentials} /></View>
+                            : <View style={{ height: '90%' }}><Profile checkCredentials={this.props.checkCredentials} jars={this.state.jars} /></View>
                         )
                     )
                 }

@@ -10,12 +10,12 @@ export default class Tabs extends Component {
                     <Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', color: accentColor, fontSize: 20 }}>Profile</Text>
                 </TouchableOpacity>
                 <View style={{ width: '0.5%', height: '100%', backgroundColor: accentColor }}></View>
-                <TouchableOpacity onPress={this.props.changeView.bind(this, 'jarnew')} style={{ width: '33%' }}>
-                    <Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', color: accentColor, fontSize: 20 }}>New +</Text>
-                </TouchableOpacity>
-                <View style={{ width: '0.5%', height: '100%', backgroundColor: accentColor }}></View>
                 <TouchableOpacity onPress={this.props.changeView.bind(this, 'jarlist')} style={{ width: '33%' }}>
                     <Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', color: accentColor, fontSize: 20 }}>Jars</Text>
+                </TouchableOpacity>
+                <View style={{ width: '0.5%', height: '100%', backgroundColor: accentColor }}></View>
+                <TouchableOpacity onPress={this.props.changeView.bind(this, 'jarnew')} style={{ width: '33%' }}>
+                    <Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', color: accentColor, fontSize: 20 }}>New +</Text>
                 </TouchableOpacity>
             </FadeInView>
         );
