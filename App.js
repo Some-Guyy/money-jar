@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert } from 'react-native';
+import { ImageBackground, Alert } from 'react-native';
 
 import Header from './components/layout/Header';
 import Anonymous from './components/anonymous/Anonymous';
@@ -21,13 +21,13 @@ export default class HelloWorldApp extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: backgroundColor }}>
+      <ImageBackground source={require('./assets/images/background.jpg')} style={{ flex: 1 }}>
         <Header header={this.state.header} />
         {this.state.loggedIn == true
           ? <Authorized checkCredentials={this.checkCredentials} />
           : <Anonymous checkCredentials={this.checkCredentials} />
         }
-      </View>
+      </ImageBackground>
     );
   }
 }
