@@ -6,7 +6,7 @@ import Header from './components/layout/Header';
 import Anonymous from './components/anonymous/Anonymous';
 import Authorized from './components/authorized/Authorized';
 
-export default class HelloWorldApp extends Component {
+export default class App extends Component {
   state = {
     user: null
   }

@@ -14,7 +14,7 @@ export default class Profile extends Component {
                 <View style={{ height: '8%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>Jar Net Worth: $</Text>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>
-                        {this.jarArray.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0).toFixed(2)}
+                        {this.jarArray.reduce((accumulator, currentValue) => {return parseFloat(accumulator) + parseFloat(currentValue)}, 0).toFixed(2)}
                     </Text>
                 </View>
                 <View style={{ height: '45%' }}></View>
