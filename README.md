@@ -3,8 +3,7 @@
 
 Originally made on Android Studio as a school project (*version 1*).
 
-<img src="https://media.discordapp.net/attachments/625686400636813352/625687474240225280/Screenshot_20190908-135633.jpg?width=377&height=670" width="150" />
-<img src="https://media.discordapp.net/attachments/625686400636813352/625687474685083678/Screenshot_20190908-135557.jpg?width=377&height=670" width="150" />
+<img src="https://media.discordapp.net/attachments/625686400636813352/625687474240225280/Screenshot_20190908-135633.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625687474685083678/Screenshot_20190908-135557.jpg?width=377&height=670" width="150" />
 
 It is now rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
 ## Information
@@ -17,11 +16,7 @@ When rebuilding version 2 via React Native, several other functions were added i
 
 Firebase is used for the authentication and database (*cloud firestore*).
 
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691910329335809/Screenshot_20190923-215407.jpg?width=377&height=670" width="150" />
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" />
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691911566393354/Screenshot_20190923-215546.jpg?width=377&height=670" width="150" />
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691909825757204/Screenshot_20190923-215535.jpg?width=377&height=670" width="150" />
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691910979321867/Screenshot_20190923-215541.jpg?width=377&height=670" width="150" />
+<img src="https://media.discordapp.net/attachments/625686400636813352/625691910329335809/Screenshot_20190923-215407.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691911566393354/Screenshot_20190923-215546.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691909825757204/Screenshot_20190923-215535.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691910979321867/Screenshot_20190923-215541.jpg?width=377&height=670" width="150" />
 
 ## Setup
 ---
