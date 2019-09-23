@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { View, Text, Animated } from 'react-native';
+import { Text, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Header extends Component {
