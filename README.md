@@ -7,7 +7,6 @@ Originally made on Android Studio as a school project (*version 1*).
 
 It is now rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
 ## Information
----
 This is a very basic finance management app made via React Native, but optimized and tested for Android. The sole reason I made this app was to try out developing something using React Native, and the only long-term user of this app is me. Therefore, it is not complete, and there is no signed APK.
 
 How it works is it allows the users to create "jars" and put values into them. These jars are mainly used to split a single savings container into different categories for the users to keep track of how much is left in each jar.
@@ -19,7 +18,6 @@ Firebase is used for the authentication and database (*cloud firestore*).
 <img src="https://media.discordapp.net/attachments/625686400636813352/625691910329335809/Screenshot_20190923-215407.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691911566393354/Screenshot_20190923-215546.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691909825757204/Screenshot_20190923-215535.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691910979321867/Screenshot_20190923-215541.jpg?width=377&height=670" width="150" />
 
 ## Setup
----
 ### Pre-requisites:
 - [NodeJS](https://nodejs.org/en/) v10.16.3 (*or above*)
 - react-native-cli package (*can be installed via* ```$ npm install -g react-native-cli```)
