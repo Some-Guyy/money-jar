@@ -7,7 +7,7 @@ MoneyJar, a money manager. Originally made on Android Studio for a school projec
 
 It has now been rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
 ## Information
-This is a very basic finance management app made via React Native, but optimized and tested for Android. The sole reason I made this app was to try out developing something using React Native, and the only long-term user of this app is me. Therefore, it is not complete, and there is no signed APK.
+This is a very basic finance management app made via React Native, but optimized and tested for Android. The sole reason I made this app was to try out developing something using React Native, and the only long-term user of this app is me. Therefore, it is not deployed.
 
 How it works is it allows the users to create "jars" and put values into them. These jars are mainly used to split a single savings container into different categories for the users to keep track of how much is left in each jar.
 

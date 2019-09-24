@@ -12,7 +12,7 @@ export default class JarList extends Component {
                     ? <Text style={{ fontFamily: 'Comfortaa-Regular', fontSize: 20, textAlign: 'center', textAlignVertical: 'center' }}>Loading Jars...</Text>
                     : (this.props.jars.length == 0
                         ? <Text style={{ fontFamily: 'Comfortaa-Regular', fontSize: 14, textAlign: 'center', textAlignVertical: 'center' }}>You have no jars. Add one by pressing "New +" on the tabs below!</Text>
-                        : this.props.jars.map((jar) => (<Jar key={jar.id} jar={jar} editJar={this.props.editJar} />))
+                        : this.props.jars.map(jar => <Jar key={jar.id} jar={jar} editJar={this.props.editJar} />)
                     )
                 }
             </FadeInView>
