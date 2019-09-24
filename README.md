@@ -1,11 +1,11 @@
 # MoneyJar
 <img src="https://media.discordapp.net/attachments/625686400636813352/625687865430638608/logo.png" width="100" />
 
-Originally made on Android Studio as a school project (*version 1*).
+MoneyJar, a money manager. Originally made on Android Studio for a school project (*version 1*).
 
 <img src="https://media.discordapp.net/attachments/625686400636813352/625687474240225280/Screenshot_20190908-135633.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625687474685083678/Screenshot_20190908-135557.jpg?width=377&height=670" width="150" />
 
-It is now rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
+It has now been rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
 ## Information
 This is a very basic finance management app made via React Native, but optimized and tested for Android. The sole reason I made this app was to try out developing something using React Native, and the only long-term user of this app is me. Therefore, it is not complete, and there is no signed APK.
 
@@ -24,14 +24,14 @@ Firebase is used for the authentication and database (*cloud firestore*).
 - [Android](https://developer.android.com/studio) 9 SDK (*API level 28*)
 - [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - An android device (*physical or virtual*) connected to your computer with USB debugging set to 'On'
-- (*Optional*) [Firebase](https://firebase.google.com/) developer account (*this is for if you wish to use your own database. You would need to replace the google-services.json file in ./android/app with your own*)
+- [Firebase](https://firebase.google.com/) account (*for the authentication and database*)
 
-### Building the app:
-1. Run npm install in the root directory to install all the dependencies.
+### Building the app on Android:
+1. [Setup](https://firebase.google.com/docs/android/setup) your Firebase configuration file (*google-services.json*) and place it into the android app directory like so: "*/android/app/google-services.json*".
+2. Run npm install in the root directory to install all the dependencies.
 
     ```$ npm install```
-
-2. Build the app into your device by running:
+3. Build the app into your device by running:
 
     ```$ react-native run-android```
 
