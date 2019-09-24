@@ -25,6 +25,7 @@ export default class JarEdit extends Component {
         }
         this.setState({ valueField: newText });
     }
+
     numbersOnlyAdd = (text) => {
         let newText = '';
         let numbers = '-.0123456789';

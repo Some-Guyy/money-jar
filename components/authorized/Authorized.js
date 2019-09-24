@@ -109,7 +109,6 @@ export default class Authorized extends Component {
             ],
             { cancelable: false }
         )
-
     }
 
     render() {
