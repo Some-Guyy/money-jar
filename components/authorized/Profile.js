@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, View, Text, TouchableNativeFeedback, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Profile extends Component {
@@ -14,13 +14,15 @@ export default class Profile extends Component {
                 <View style={{ height: '8%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>Jar Net Worth: $</Text>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>
-                        {this.jarArray.reduce((accumulator, currentValue) => {return parseFloat(accumulator) + parseFloat(currentValue)}, 0).toFixed(2)}
+                        {this.jarArray.reduce((accumulator, currentValue) => { return parseFloat(accumulator) + parseFloat(currentValue) }, 0).toFixed(2)}
                     </Text>
                 </View>
                 <View style={{ height: '45%' }}></View>
-                <TouchableOpacity onPress={this.props.logout.bind(this)} style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Log out</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Log out</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 <View style={{ height: '10%' }}></View>
             </FadeInView>
         )

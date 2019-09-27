@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Animated, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableNativeFeedback, Animated, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class JarEdit extends Component {
@@ -67,15 +67,19 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '5%' }}></View>
 
-                <TouchableOpacity onPress={this.props.updateJar.bind(this, this.props.focusedJar.id, this.state.nameField, this.state.valueField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Update</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.updateJar.bind(this, this.props.focusedJar.id, this.state.nameField, this.state.valueField)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Update</Text>
+                    </View>
+                </TouchableNativeFeedback>
 
                 <View style={{ height: '5%' }}></View>
 
-                <TouchableOpacity onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Delete!</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.deleteJar.bind(this, this.props.focusedJar.id)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Delete!</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 <View style={{ height: '1%' }}></View>
                 <Text style={[styles.bodyText, { height: '6%', fontSize: 14, textAlign: 'center' }]}>Warning: Once you delete a jar, it's gone for good.</Text>
 
@@ -84,9 +88,11 @@ export default class JarEdit extends Component {
                 <Text style={[styles.bodyText, { height: '6%' }]}>Or, simply add to the jar!</Text>
                 <TextInput value={this.state.addField} onChangeText={(text) => this.numbersOnlyAdd(text)} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} />
                 <View style={{ height: '2%' }}></View>
-                <TouchableOpacity onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
+                    </View>                    
+                </TouchableNativeFeedback>
                 <View style={{ height: '7%' }}></View>
             </FadeInView>
         )

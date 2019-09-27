@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Animated, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableNativeFeedback, Animated, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class JarNew extends Component {
@@ -49,9 +49,11 @@ export default class JarNew extends Component {
 
                 <View style={{ height: '5%' }}></View>
 
-                <TouchableOpacity onPress={this.props.addJar.bind(this, this.state.nameField, this.state.valueField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Create!</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.addJar.bind(this, this.state.nameField, this.state.valueField)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Create!</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 <View style={{ height: '46%' }}></View>
             </FadeInView>
         )
