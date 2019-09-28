@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Login extends Component {
@@ -16,19 +16,21 @@ export default class Login extends Component {
                 <View style={{ height: '1%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Email </Text>
-                    <TextInput value={this.state.emailField} onChangeText={(text) => { this.setState({ emailField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.emailField} onChangeText={(text) => { this.setState({ emailField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '2%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Password </Text>
-                    <TextInput secureTextEntry={true} value={this.state.passwordField} onChangeText={(text) => { this.setState({ passwordField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput secureTextEntry={true} value={this.state.passwordField} onChangeText={(text) => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '5%' }}></View>
-                <TouchableOpacity onPress={this.props.login.bind(this, this.state.emailField, this.state.passwordField)} style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
-                    <Text style={[styles.bodyText, { color: accentColor }]}>Log in!</Text>
-                </TouchableOpacity>
+                <TouchableNativeFeedback onPress={this.props.login.bind(this, this.state.emailField, this.state.passwordField)} background={TouchableNativeFeedback.Ripple()}>
+                    <View style={{ height: '8%', width: '30%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
+                        <Text style={[styles.bodyText, { color: accentColor }]}>Log in!</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 <View style={{ height: '35%' }}></View>
                 <View style={{ height: '10%', flexDirection: 'row' }}>
                     <Text style={styles.bodyText}>Don't have an account?</Text>
