@@ -16,13 +16,17 @@ export default class JarEdit extends Component {
         let numbers = '-.0123456789';
 
         for (var i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1) {
-                newText = newText + text[i];
+            if (text[i] === '.' && newText.indexOf('.') > -1) {
+                // Don't allow more than 1 decimal point.
+            } else if (text[i] === '-' && i > 0) {
+                // Don't allow negative signs anywhere except the first character.
+            } else if (text[i-3] === '.') {
+                // Don't allow more than 2 numbers after a decimal point.
             } else if (text[i] == ' ') {
-                // remove any auto-spacing that devices add in
-            } else {
-                // your call back function
-                Alert.alert('Note', "Please enter numbers only.");
+                // Remove any auto-spacing that devices add in.
+            } else if (numbers.indexOf(text[i]) > -1) {
+                // After all checks are passed, add in the character.
+                newText = newText + text[i];
             }
         }
         this.setState({ valueField: newText });
@@ -33,13 +37,17 @@ export default class JarEdit extends Component {
         let numbers = '-.0123456789';
 
         for (var i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1) {
-                newText = newText + text[i];
+            if (text[i] === '.' && newText.indexOf('.') > -1) {
+                // Don't allow more than 1 decimal point.
+            } else if (text[i] === '-' && i > 0) {
+                // Don't allow negative signs anywhere except the first character.
+            } else if (text[i-3] === '.') {
+                // Don't allow more than 2 numbers after a decimal point.
             } else if (text[i] == ' ') {
-                // remove any auto-spacing that devices add in
-            } else {
-                // your call back function
-                Alert.alert('Note', "Please enter numbers only.");
+                // Remove any auto-spacing that devices add in.
+            } else if (numbers.indexOf(text[i]) > -1) {
+                // After all checks are passed, add in the character.
+                newText = newText + text[i];
             }
         }
         this.setState({ addField: newText });
@@ -93,7 +101,7 @@ export default class JarEdit extends Component {
                 <TouchableNativeFeedback onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} background={TouchableNativeFeedback.Ripple()}>
                     <View style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
                         <Text style={[styles.bodyText, { color: accentColor }]}>Add!</Text>
-                    </View>                    
+                    </View>
                 </TouchableNativeFeedback>
                 <View style={{ height: '7%' }}></View>
             </ViewFadeIn>

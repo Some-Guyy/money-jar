@@ -13,13 +13,17 @@ export default class JarNew extends Component {
         let numbers = '-.0123456789';
     
         for (var i=0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1 ) {
+            if (text[i] === '.' && newText.indexOf('.') > -1) {
+                // Don't allow more than 1 decimal point.
+            } else if (text[i] === '-' && i > 0) {
+                // Don't allow negative signs anywhere except the first character.
+            } else if (text[i-3] === '.') {
+                // Don't allow more than 2 numbers after a decimal point.
+            } else if (text[i] == ' ') {
+                // Remove any auto-spacing that devices add in.
+            } else if (numbers.indexOf(text[i]) > -1) {
+                // After all checks are passed, add in the character.
                 newText = newText + text[i];
-            } else if (text[i] == ' '){
-                // remove any auto-spacing that devices add in
-            } else {
-                // your call back function
-                Alert.alert('Note', "Please enter numbers only.");
             }
         }
         this.setState({ valueField: newText });
