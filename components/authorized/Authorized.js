@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Alert } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
 import firebase from 'react-native-firebase';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
@@ -16,7 +16,8 @@ export default class Authorized extends Component {
     state = {
         view: 'jarlist',
         focusedJar: 'none',
-        jars: ['none']
+        jars: ['none'],
+        resendTxt: 'Resend'
     }
     ref = firebase.firestore().collection('users').doc(this.props.user.uid)
 
@@ -117,12 +118,18 @@ export default class Authorized extends Component {
         return (
             <DismissKeyboard>
                 <View style={{ flex: 10 }}>
-                    {!this.props.user.emailVerified
+                    {this.props.user.emailVerified
                         ? <ViewFadeIn style={{ height: '90%' }}>
                             <View style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></View>
                             <View style={{ height: '90%' }}>
-                                <Text style={{ fontFamily: 'Comfortaa-Regular', fontSize: 20, textAlign: 'center', textAlignVertical: 'center' }}>
-                                    Please verify your email to be able to use MoneyJar.
+                                <Text style={styles.text}>
+                                    A verification email has been sent to your email which you should receive in 5 minutes.{'\n'}{'\n'}
+                                    Please verify it to be able to use MoneyJar.{'\n'}{'\n'}
+                                </Text>
+                                <Text style={[styles.text, { fontSize: 18 }]}>
+                                    Did not receive the email?{'\n'}
+                                    <TouchableOpacity><Text style={{ color: dominantColor, textDecorationLine: 'underline' }}>{this.state.resendTxt}</Text></TouchableOpacity>
+                                    <Text> verification email.</Text>
                                 </Text>
                             </View>
                         </ViewFadeIn>
@@ -146,6 +153,15 @@ export default class Authorized extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontFamily: 'Comfortaa-Regular',
+        fontSize: 20,
+        textAlign: 'center',
+        textAlignVertical: 'center'
+    }
+})
 
 Authorized.propTypes = {
     user: PropTypes.object.isRequired,

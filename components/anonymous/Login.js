@@ -40,7 +40,7 @@ export default class Login extends Component {
                         <Text style={[styles.bodyText, { color: dominantColor }]}> Sign up!</Text>
                     </TouchableOpacity>
                 </View>
-            </ViewFadeIn >
+            </ViewFadeIn>
         );
     }
 }
