@@ -1,6 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import PropTypes from 'prop-types';
+
+import ViewFadeIn from '../utilities/ViewFadeIn';
 
 export default class Signup extends Component {
     state = {
@@ -10,7 +12,7 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <FadeInView style={{ flex: 1, alignItems: 'center' }}>
+            <ViewFadeIn style={{ flex: 1, alignItems: 'center' }}>
                 <View style={{ height: '10%' }}></View>
                 <Text style={[styles.bodyText, { height: '7%', fontSize: 20 }]}>Sign up for an account!</Text>
                 <Text style={[styles.bodyText, { height: '8%', textAlign: 'center' }]}>Please provide a vaild email as we currently only accept email signups.</Text>
@@ -41,31 +43,9 @@ export default class Signup extends Component {
                         <Text style={[styles.bodyText, { color: dominantColor }]}> Log in!</Text>
                     </TouchableOpacity>
                 </View>
-            </FadeInView >
+            </ViewFadeIn >
         );
     }
-}
-
-const FadeInView = (props) => {
-    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
-
-    useEffect(() => {
-        Animated.timing(
-            fadeAdmin,
-            {
-                toValue: 1,
-                duration: 500,
-            }
-        ).start();
-    }, [])
-
-    return (
-        // Special animatable View
-        // Bind opacity to animated value
-        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
-            {props.children}
-        </Animated.View>
-    );
 }
 
 const styles = StyleSheet.create({

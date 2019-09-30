@@ -1,13 +1,15 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Text, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
+
+import ViewFadeIn from '../utilities/ViewFadeIn';
 
 import Jar from './Jar';
 
 export default class JarList extends Component {
     render() {
         return (
-            <FadeInView>
+            <ViewFadeIn>
                 {this.props.jars[0] == 'none'
                     ? <Text style={{ fontFamily: 'Comfortaa-Regular', fontSize: 20, textAlign: 'center', textAlignVertical: 'center' }}>Loading Jars...</Text>
                     : (this.props.jars.length == 0
@@ -15,31 +17,9 @@ export default class JarList extends Component {
                         : this.props.jars.map(jar => <Jar key={jar.id} jar={jar} editJar={this.props.editJar} />)
                     )
                 }
-            </FadeInView>
+            </ViewFadeIn>
         )
     }
-}
-
-const FadeInView = (props) => {
-    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
-
-    useEffect(() => {
-        Animated.timing(
-            fadeAdmin,
-            {
-                toValue: 1,
-                duration: 500,
-            }
-        ).start();
-    }, [])
-
-    return (
-        // Special animatable View
-        // Bind opacity to animated value
-        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
-            {props.children}
-        </Animated.View>
-    );
 }
 
 JarList.propTypes = {

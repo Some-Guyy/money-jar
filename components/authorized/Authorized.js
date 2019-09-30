@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { View, ScrollView, Text, Alert, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { View, ScrollView, Text, Alert } from 'react-native';
 import firebase from 'react-native-firebase';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
@@ -118,7 +118,7 @@ export default class Authorized extends Component {
                 <View style={{ flex: 10 }}>
                     {this.state.view == 'jarlist'
                         ? <View style={{ height: '90%' }}>
-                            <FadeInView style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></FadeInView>
+                            <ViewFadeIn style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></ViewFadeIn>
                             <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
                         </View>
                         : (this.state.view == 'jarfocus'
@@ -134,28 +134,6 @@ export default class Authorized extends Component {
             </DismissKeyboard>
         );
     }
-}
-
-const FadeInView = (props) => {
-    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
-
-    useEffect(() => {
-        Animated.timing(
-            fadeAdmin,
-            {
-                toValue: 1,
-                duration: 500,
-            }
-        ).start();
-    }, [])
-
-    return (
-        // Special animatable View
-        // Bind opacity to animated value
-        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
-            {props.children}
-        </Animated.View>
-    );
 }
 
 Authorized.propTypes = {

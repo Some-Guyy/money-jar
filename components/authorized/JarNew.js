@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableNativeFeedback, Animated, Alert } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, TextInput, TouchableNativeFeedback, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class JarNew extends Component {
@@ -27,7 +27,7 @@ export default class JarNew extends Component {
 
     render() {
         return (
-            <FadeInView style={{ alignItems: 'center' }}>
+            <ViewFadeIn style={{ alignItems: 'center' }}>
                 <View style={{ height: '15%' }}></View>
                 <Text style={[styles.bodyText, { height: '8%', fontSize: 24}]}>Create a new Jar!</Text>
 
@@ -55,31 +55,9 @@ export default class JarNew extends Component {
                     </View>
                 </TouchableNativeFeedback>
                 <View style={{ height: '46%' }}></View>
-            </FadeInView>
+            </ViewFadeIn>
         )
     }
-}
-
-const FadeInView = (props) => {
-    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
-
-    useEffect(() => {
-        Animated.timing(
-            fadeAdmin,
-            {
-                toValue: 1,
-                duration: 500,
-            }
-        ).start();
-    }, [])
-
-    return (
-        // Special animatable View
-        // Bind opacity to animated value
-        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
-            {props.children}
-        </Animated.View>
-    );
 }
 
 const styles = StyleSheet.create({

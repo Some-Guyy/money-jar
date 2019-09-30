@@ -1,13 +1,15 @@
-import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableNativeFeedback, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, TouchableNativeFeedback } from 'react-native';
 import PropTypes from 'prop-types';
+
+import ViewFadeIn from '../utilities/ViewFadeIn';
 
 export default class Profile extends Component {
     jarArray = this.props.jars.map((jar) => (jar.value));
 
     render() {
         return (
-            <FadeInView style={{ alignItems: 'center' }}>
+            <ViewFadeIn style={{ alignItems: 'center' }}>
                 <View style={{ height: '10%' }}></View>
                 <Text style={[styles.bodyText, { height: '8%', fontSize: 24 }]}>User's Profile</Text>
                 <View style={{ height: '10%' }}></View>
@@ -24,31 +26,9 @@ export default class Profile extends Component {
                     </View>
                 </TouchableNativeFeedback>
                 <View style={{ height: '10%' }}></View>
-            </FadeInView>
+            </ViewFadeIn>
         )
     }
-}
-
-const FadeInView = (props) => {
-    const [fadeAdmin] = useState(new Animated.Value(0))  // Initial value for opacity: 0
-
-    useEffect(() => {
-        Animated.timing(
-            fadeAdmin,
-            {
-                toValue: 1,
-                duration: 500,
-            }
-        ).start();
-    }, [])
-
-    return (
-        // Special animatable View
-        // Bind opacity to animated value
-        <Animated.View style={{ ...props.style, opacity: fadeAdmin }}>
-            {props.children}
-        </Animated.View>
-    );
 }
 
 const styles = StyleSheet.create({
