@@ -10,6 +10,7 @@ import JarList from './JarList';
 import JarEdit from './JarEdit';
 import JarNew from './JarNew';
 import Profile from './Profile';
+import ViewFadeIn from '../utilities/ViewFadeIn';
 
 export default class Authorized extends Component {
     state = {
@@ -116,16 +117,26 @@ export default class Authorized extends Component {
         return (
             <DismissKeyboard>
                 <View style={{ flex: 10 }}>
-                    {this.state.view == 'jarlist'
-                        ? <View style={{ height: '90%' }}>
-                            <ViewFadeIn style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></ViewFadeIn>
-                            <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
-                        </View>
-                        : (this.state.view == 'jarfocus'
-                            ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
-                            : (this.state.view == 'jarnew'
-                                ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
-                                : <View style={{ height: '90%' }}><Profile user={this.props.user} jars={this.state.jars} logout={this.props.logout} /></View>
+                    {!this.props.user.emailVerified
+                        ? <ViewFadeIn style={{ height: '90%' }}>
+                            <View style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></View>
+                            <View style={{ height: '90%' }}>
+                                <Text style={{ fontFamily: 'Comfortaa-Regular', fontSize: 20, textAlign: 'center', textAlignVertical: 'center' }}>
+                                    Please verify your email to be able to use MoneyJar.
+                                </Text>
+                            </View>
+                        </ViewFadeIn>
+                        : (this.state.view == 'jarlist'
+                            ? <View style={{ height: '90%' }}>
+                                <ViewFadeIn style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></ViewFadeIn>
+                                <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
+                            </View>
+                            : (this.state.view == 'jarfocus'
+                                ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
+                                : (this.state.view == 'jarnew'
+                                    ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
+                                    : <View style={{ height: '90%' }}><Profile user={this.props.user} jars={this.state.jars} logout={this.props.logout} /></View>
+                                )
                             )
                         )
                     }
