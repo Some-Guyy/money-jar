@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Alert, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import firebase from 'react-native-firebase';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
@@ -17,7 +17,8 @@ export default class Authorized extends Component {
         view: 'jarlist',
         focusedJar: 'none',
         jars: ['none'],
-        resendTxt: 'Resend'
+        resendBtn: 'Resend',
+        resendTxt: ' verification email.'
     }
     ref = firebase.firestore().collection('users').doc(this.props.user.uid)
 
@@ -114,24 +115,41 @@ export default class Authorized extends Component {
         )
     }
 
+    resendVerification = _ => {
+        this.setState({ resendBtn: '', resendTxt: 'Resending verification email now...' });
+        this.props.user.sendEmailVerification()
+            .then(_ => Alert.alert('Notice', "Email verification resent!"))
+            .catch(error => Alert.alert('Error', error))
+            .finally(_ => this.setState({ resendBtn: 'Resend', resendTxt: ' verification email.' }))
+    }
+
     render() {
         return (
             <DismissKeyboard>
                 <View style={{ flex: 10 }}>
-                    {this.props.user.emailVerified
-                        ? <ViewFadeIn style={{ height: '90%' }}>
+                    {!this.props.user.emailVerified
+                        ? <ViewFadeIn style={{ height: '90%', alignItems: 'center' }}>
                             <View style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></View>
-                            <View style={{ height: '90%' }}>
+                            <View style={{ height: '50%' }}>
                                 <Text style={styles.text}>
-                                    A verification email has been sent to your email which you should receive in 5 minutes.{'\n'}{'\n'}
-                                    Please verify it to be able to use MoneyJar.{'\n'}{'\n'}
+                                    A verification email has been sent to you. Please verify it to be able to use MoneyJar.{'\n'}{'\n'}
                                 </Text>
-                                <Text style={[styles.text, { fontSize: 18 }]}>
-                                    Did not receive the email?{'\n'}
-                                    <TouchableOpacity><Text style={{ color: dominantColor, textDecorationLine: 'underline' }}>{this.state.resendTxt}</Text></TouchableOpacity>
-                                    <Text> verification email.</Text>
+                                <Text style={[styles.text, { fontSize: 17 }]}>
+                                    Did not receive the email?
                                 </Text>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                    <TouchableOpacity onPress={this.resendVerification}>
+                                        <Text style={[styles.text, { fontSize: 17, color: dominantColor, textDecorationLine: 'underline' }]}>{this.state.resendBtn}</Text>
+                                    </TouchableOpacity>
+                                    <Text style={[styles.text, { fontSize: 17 }]}>{this.state.resendTxt}</Text>
+                                </View>
                             </View>
+                            <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
+                                <View style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                                    <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Log out</Text>
+                                </View>
+                            </TouchableNativeFeedback>
+                            <View style={{ height: '31%' }}></View>
                         </ViewFadeIn>
                         : (this.state.view == 'jarlist'
                             ? <View style={{ height: '90%' }}>
@@ -149,7 +167,7 @@ export default class Authorized extends Component {
                     }
                     <Tabs changeView={this.changeView} />
                 </View>
-            </DismissKeyboard>
+            </DismissKeyboard >
         );
     }
 }
@@ -157,7 +175,7 @@ export default class Authorized extends Component {
 const styles = StyleSheet.create({
     text: {
         fontFamily: 'Comfortaa-Regular',
-        fontSize: 20,
+        fontSize: 19,
         textAlign: 'center',
         textAlignVertical: 'center'
     }
