@@ -18,13 +18,13 @@ export default class Login extends Component {
                 <View style={{ height: '1%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Email </Text>
-                    <TextInput value={this.state.emailField} onChangeText={(text) => { this.setState({ emailField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='email-address' />
+                    <TextInput value={this.state.emailField} onChangeText={text => { this.setState({ emailField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='email-address' />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '2%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Password </Text>
-                    <TextInput secureTextEntry={true} value={this.state.passwordField} onChangeText={(text) => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput secureTextEntry={true} value={this.state.passwordField} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '5%' }}></View>

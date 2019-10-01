@@ -39,7 +39,7 @@ export default class JarNew extends Component {
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
-                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.nameField} onChangeText={text => { this.setState({ nameField: text})}} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
@@ -47,7 +47,7 @@ export default class JarNew extends Component {
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Value </Text>
-                    <TextInput value={this.state.valueField} onChangeText={(text) => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
+                    <TextInput value={this.state.valueField} onChangeText={text => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
                     <View style={{ width: '20%' }}></View>
                 </View>
 

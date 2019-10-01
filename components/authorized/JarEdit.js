@@ -63,7 +63,7 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Name </Text>
-                    <TextInput value={this.state.nameField} onChangeText={(text) => { this.setState({ nameField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput value={this.state.nameField} onChangeText={text => { this.setState({ nameField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
@@ -71,7 +71,7 @@ export default class JarEdit extends Component {
 
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Value </Text>
-                    <TextInput value={this.state.valueField} onChangeText={(text) => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
+                    <TextInput value={this.state.valueField} onChangeText={text => this.numbersOnlyValue(text)} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
                     <View style={{ width: '20%' }}></View>
                 </View>
 
@@ -96,7 +96,7 @@ export default class JarEdit extends Component {
                 <View style={{ height: '5%' }}></View>
 
                 <Text style={[styles.bodyText, { height: '6%' }]}>Or, simply add to the jar!</Text>
-                <TextInput value={this.state.addField} onChangeText={(text) => this.numbersOnlyAdd(text)} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
+                <TextInput value={this.state.addField} onChangeText={text => this.numbersOnlyAdd(text)} style={[styles.bodyText, { height: '7%', width: '30%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='numeric' />
                 <View style={{ height: '2%' }}></View>
                 <TouchableNativeFeedback onPress={this.props.addJarValue.bind(this, this.props.focusedJar.id, this.state.addField)} background={TouchableNativeFeedback.Ripple()}>
                     <View style={{ height: '8%', width: '20%', alignItems: 'center', backgroundColor: proceedColor, padding: 10 }}>
