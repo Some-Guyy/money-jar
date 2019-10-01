@@ -14,9 +14,7 @@ export default class App extends Component {
   ref = firebase.firestore().collection('users');
 
   componentDidMount = _ => {
-    this.unsubscriber = firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user });
-    });
+    this.unsubscriber = firebase.auth().onAuthStateChanged(user => this.setState({ user }));
   }
 
   componentWillUnmount = _ => {
