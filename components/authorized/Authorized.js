@@ -112,7 +112,7 @@ export default class Authorized extends Component {
                 }
             ],
             { cancelable: false }
-        )
+        );
     }
 
     render() {
@@ -121,7 +121,7 @@ export default class Authorized extends Component {
                 <View style={{ flex: 10 }}>
                     {this.state.view == 'jarlist'
                         ? <View style={{ height: '90%' }}>
-                            <ViewFadeIn style={{ height: '10%', justifyContent: 'center' }}><Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', fontSize: 20 }}>Welcome!{'\n' + this.props.user.email}</Text></ViewFadeIn>
+                            <ViewFadeIn style={{ height: '10%', justifyContent: 'center' }}><Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', fontSize: 20 }}>{this.props.user.email}</Text></ViewFadeIn>
                             <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
                         </View>
                         : (this.state.view == 'jarfocus'
