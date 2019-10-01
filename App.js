@@ -23,9 +23,11 @@ export default class App extends Component {
     }
   }
 
-  signup = (email, password) => {
-    if (email == '' || password == '') {
-      Alert.alert('Error', "Fields must not be empty!")
+  signup = (email, password, confirmPassword) => {
+    if (email === '' || password === '' || confirmPassword === '') {
+      Alert.alert('Error', "Fields must not be empty!");
+    } else if (password != confirmPassword) {
+      Alert.alert('Error', "Passwords do not match!");
     } else {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
