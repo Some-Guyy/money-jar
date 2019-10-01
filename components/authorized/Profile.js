@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableNativeFeedback, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import ViewFadeIn from '../utilities/ViewFadeIn';
@@ -12,7 +12,8 @@ export default class Profile extends Component {
             <ViewFadeIn style={{ alignItems: 'center' }}>
                 <View style={{ height: '30%', justifyContent: 'center' }}>
                     <Text style={[styles.bodyText, { fontSize: 24 }]}>Profile</Text>
-                    <Text style={styles.bodyText}>{this.props.user.email}</Text>
+                    <Text style={styles.bodyText}>Email: {this.props.user.email}</Text>
+                    <Text style={[styles.bodyText, { textDecorationLine: 'underline' }]}>Reset Password</Text>
                 </View>
                 <View style={{ height: '8%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>Jar Net Worth: $</Text>
