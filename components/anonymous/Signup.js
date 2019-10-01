@@ -20,19 +20,19 @@ export default class Signup extends Component {
                 <View style={{ height: '1%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Email </Text>
-                    <TextInput value={this.state.emailField} onChangeText={text => { this.setState({ emailField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='email-address' />
+                    <TextInput value={this.state.emailField} onSubmitEditing={_ => this.refs.passwordField.focus()} onChangeText={text => { this.setState({ emailField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} keyboardType='email-address' />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '2%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Password </Text>
-                    <TextInput secureTextEntry={true} value={this.state.passwordField} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput ref={'passwordField'} onSubmitEditing={_ => this.refs.confirmPasswordField.focus()} secureTextEntry={true} value={this.state.passwordField} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '2%' }}></View>
                 <View style={{ height: '7%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { width: '30%', textAlignVertical: 'center', textAlign: 'right' }]}>Confirm {'\n'}Password </Text>
-                    <TextInput secureTextEntry={true} value={this.state.confirmPasswordField} onChangeText={text => { this.setState({ confirmPasswordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
+                    <TextInput ref={'confirmPasswordField'} onSubmitEditing={this.props.signup.bind(this, this.state.emailField, this.state.passwordField, this.state.confirmPasswordField)} secureTextEntry={true} value={this.state.confirmPasswordField} onChangeText={text => { this.setState({ confirmPasswordField: text }) }} style={[styles.bodyText, { width: '50%', borderColor: dominantColor, borderWidth: 1 }]} />
                     <View style={{ width: '20%' }}></View>
                 </View>
                 <View style={{ height: '2%' }}></View>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, Alert, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
 import firebase from 'react-native-firebase';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
