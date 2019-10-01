@@ -119,7 +119,7 @@ export default class Authorized extends Component {
         this.setState({ resendBtn: '', resendTxt: 'Resending verification email now...' });
         this.props.user.sendEmailVerification()
             .then(_ => Alert.alert('Notice', "Email verification resent!"))
-            .catch(error => Alert.alert('Error', error))
+            .catch(err => Alert.alert('Error', err.toString()))
             .finally(_ => this.setState({ resendBtn: 'Resend', resendTxt: ' verification email.' }))
     }
 
@@ -144,19 +144,11 @@ export default class Authorized extends Component {
                                     <Text style={[styles.text, { fontSize: 17 }]}>{this.state.resendTxt}</Text>
                                 </View>
                             </View>
-                            <View style={{ height: '9%', flexDirection: 'row' }}>
-                                <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple()}>
-                                    <View style={{ width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
-                                        <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Refresh</Text>
-                                    </View>
-                                </TouchableNativeFeedback>
-                                <Text>   </Text>
-                                <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
-                                    <View style={{ width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
-                                        <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Log out</Text>
-                                    </View>
-                                </TouchableNativeFeedback>
-                            </View>
+                            <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
+                                <View style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                                    <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Log out</Text>
+                                </View>
+                            </TouchableNativeFeedback>
                             <View style={{ height: '31%' }}></View>
                         </ViewFadeIn>
                         : (this.state.view == 'jarlist'

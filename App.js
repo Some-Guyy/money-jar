@@ -31,7 +31,11 @@ export default class App extends Component {
         .then(() => {
           this.ref.doc(this.state.user.uid).set({
             jars: []
-          })
+          });
+          this.state.user.sendEmailVerification()
+            .then(_ => Alert.alert('Success', `We have sent a verification email to ${email}. Please verify it before logging in.`))
+            .catch(err => Alert.alert('Error', err.toString()))
+            .finally(_ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString())))
         })
         .catch(err => Alert.alert('Error', err.toString()))
     }
@@ -41,7 +45,14 @@ export default class App extends Component {
     if (email == '' || password == '') {
       Alert.alert('Error', "Fields must not be empty!")
     } else {
-      firebase.auth().signInWithEmailAndPassword(email, password).catch(err => Alert.alert('Error', err.toString()))
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(_ => {
+          if (!this.state.user.emailVerified) {
+            firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()));
+            Alert.alert('Sorry', "Please verify your account to be able to use Money Jar.");
+          }
+        })
+        .catch(err => Alert.alert('Error', err.toString()))
     }
   }
 
@@ -51,7 +62,7 @@ export default class App extends Component {
     return (
       <ImageBackground source={require('./assets/images/background.jpg')} style={{ flex: 1 }}>
         <Header header={'Money Jar'} />
-        {!this.state.user
+        {this.state.user === null || !this.state.user.emailVerified
           ? <Anonymous signup={this.signup} login={this.login} />
           : <Authorized user={this.state.user} logout={this.logout} />
         }
