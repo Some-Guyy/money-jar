@@ -35,7 +35,7 @@ export default class App extends Component {
           this.state.user.sendEmailVerification()
             .then(_ => Alert.alert('Success', `We have sent a verification email to ${email}. Please verify it before logging in.`))
             .catch(err => Alert.alert('Error', err.toString()))
-            .finally(_ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString())))
+            .finally(_ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))) // Log out.
         })
         .catch(err => Alert.alert('Error', err.toString()))
     }
@@ -48,8 +48,25 @@ export default class App extends Component {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(_ => {
           if (!this.state.user.emailVerified) {
-            firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()));
-            Alert.alert('Sorry', "Please verify your account to be able to use Money Jar.");
+            Alert.alert(
+              'Sorry',
+              `Please verify your account to be able to use Money Jar. If you have not received the verification email, press "RESEND" and we will resend it to ${email} shortly.`,
+              [
+                {
+                  text: 'OK',
+                  style: 'cancel',
+                  onPress: _ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString())) // Log out.
+                },
+                {
+                  text: 'Resend',
+                  onPress: _ => this.state.user.sendEmailVerification()
+                    .then(_ => Alert.alert('Success', `Verification email resent to ${email}.`))
+                    .catch(err => Alert.alert('Error', err.toString()))
+                    .finally(_ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))) // Log out.
+                }
+              ],
+              { cancelable: false }
+            );
           }
         })
         .catch(err => Alert.alert('Error', err.toString()))

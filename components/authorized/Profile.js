@@ -10,9 +10,10 @@ export default class Profile extends Component {
     render() {
         return (
             <ViewFadeIn style={{ alignItems: 'center' }}>
-                <View style={{ height: '10%' }}></View>
-                <Text style={[styles.bodyText, { height: '8%', fontSize: 24 }]}>User's Profile</Text>
-                <View style={{ height: '10%' }}></View>
+                <View style={{ height: '30%', justifyContent: 'center' }}>
+                    <Text style={[styles.bodyText, { fontSize: 24 }]}>Profile</Text>
+                    <Text style={styles.bodyText}>{this.props.user.email}</Text>
+                </View>
                 <View style={{ height: '8%', flexDirection: 'row' }}>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>Jar Net Worth: $</Text>
                     <Text style={[styles.bodyText, { fontSize: 20 }]}>
@@ -34,7 +35,8 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
     bodyText: {
         fontFamily: 'Comfortaa-Regular',
-        fontSize: 16
+        fontSize: 16,
+        textAlign: 'center'
     }
 })
 
