@@ -52,7 +52,7 @@ export default class App extends Component {
           if (!this.state.user.emailVerified) {
             Alert.alert(
               'Sorry',
-              `Please verify your account to be able to use Money Jar. If you have not received the verification email, press "RESEND" and we will resend it to ${email} shortly.`,
+              `Please verify your account to be able to use Money Jar. If you have not received the verification email, press 'RESEND' and we will resend it to ${email} shortly.`,
               [
                 {
                   text: 'OK',
@@ -77,13 +77,30 @@ export default class App extends Component {
 
   logout = _ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))
 
+  resetPwd = _ => Alert.alert(
+    'Warning',
+    "Are you sure you want to reset your password? Press 'CONFIRM' and we will send you an email to reset your password.",
+    [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Confirm',
+        onPress: _ => firebase.auth().sendPasswordResetEmail(this.state.user.email)
+          .then(Alert.alert('Success', `Email for resetting password successfully sent to ${this.state.user.email}.`))
+          .catch(err => Alert.alert('Error', err.toString()))
+      }
+    ]
+  )
+
   render() {
     return (
       <ImageBackground source={require('./assets/images/background.jpg')} style={{ flex: 1 }}>
         <Header header={'Money Jar'} />
         {this.state.user === null || !this.state.user.emailVerified
           ? <Anonymous signup={this.signup} login={this.login} />
-          : <Authorized user={this.state.user} logout={this.logout} />
+          : <Authorized user={this.state.user} logout={this.logout} resetPwd={this.resetPwd} />
         }
       </ImageBackground>
     );

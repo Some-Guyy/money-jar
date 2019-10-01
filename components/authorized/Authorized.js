@@ -127,7 +127,7 @@ export default class Authorized extends Component {
                             ? <View style={{ height: '90%' }}><JarEdit focusedJar={this.state.focusedJar} addJarValue={this.addJarValue} updateJar={this.updateJar} deleteJar={this.deleteJar} /></View>
                             : (this.state.view == 'jarnew'
                                 ? <View style={{ height: '90%' }}><JarNew addJar={this.addJar} /></View>
-                                : <View style={{ height: '90%' }}><Profile user={this.props.user} jars={this.state.jars} logout={this.props.logout} /></View>
+                                : <View style={{ height: '90%' }}><Profile user={this.props.user} jars={this.state.jars} logout={this.props.logout} resetPwd={this.props.resetPwd} /></View>
                             )
                         )
                     }
@@ -149,5 +149,6 @@ const styles = StyleSheet.create({
 
 Authorized.propTypes = {
     user: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    resetPwd: PropTypes.func.isRequired
 }
