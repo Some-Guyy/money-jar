@@ -15,6 +15,7 @@ export default class App extends Component {
 
   componentDidMount = _ => {
     this.unsubscriber = firebase.auth().onAuthStateChanged(user => this.setState({ user }));
+    firebase.auth().useDeviceLanguage(); // Emails will be language localized
   }
 
   componentWillUnmount = _ => {
