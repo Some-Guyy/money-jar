@@ -129,7 +129,7 @@ export default class Authorized extends Component {
                 <View style={{ flex: 10 }}>
                     {!this.props.user.emailVerified
                         ? <ViewFadeIn style={{ height: '90%', alignItems: 'center' }}>
-                            <View style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></View>
+                            <View style={{ height: '10%', justifyContent: 'center' }}><Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', fontSize: 20 }}>Welcome!{'\n' + this.props.user.email}</Text></View>
                             <View style={{ height: '50%' }}>
                                 <Text style={styles.text}>
                                     A verification email has been sent to you. Please verify it to be able to use MoneyJar.{'\n'}{'\n'}
@@ -144,16 +144,24 @@ export default class Authorized extends Component {
                                     <Text style={[styles.text, { fontSize: 17 }]}>{this.state.resendTxt}</Text>
                                 </View>
                             </View>
-                            <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
-                                <View style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
-                                    <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Log out</Text>
-                                </View>
-                            </TouchableNativeFeedback>
+                            <View style={{ height: '9%', flexDirection: 'row' }}>
+                                <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple()}>
+                                    <View style={{ width: '30%', alignItems: 'center', backgroundColor: dominantColor, padding: 10 }}>
+                                        <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Refresh</Text>
+                                    </View>
+                                </TouchableNativeFeedback>
+                                <Text>   </Text>
+                                <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
+                                    <View style={{ width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
+                                        <Text style={[styles.text, { color: accentColor, fontSize: 16 }]}>Log out</Text>
+                                    </View>
+                                </TouchableNativeFeedback>
+                            </View>
                             <View style={{ height: '31%' }}></View>
                         </ViewFadeIn>
                         : (this.state.view == 'jarlist'
                             ? <View style={{ height: '90%' }}>
-                                <ViewFadeIn style={{ height: '10%', alignSelf: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: 'Rye-Regular', fontSize: 22 }}>Welcome, {this.props.user.email}</Text></ViewFadeIn>
+                                <ViewFadeIn style={{ height: '10%', justifyContent: 'center' }}><Text style={{ textAlign: 'center', fontFamily: 'Rye-Regular', fontSize: 20 }}>Welcome!{'\n' + this.props.user.email}</Text></ViewFadeIn>
                                 <ScrollView style={{ height: '90%' }}><JarList jars={this.state.jars} editJar={this.editJar} /></ScrollView>
                             </View>
                             : (this.state.view == 'jarfocus'
