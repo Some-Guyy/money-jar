@@ -8,7 +8,7 @@ export default class JarNew extends Component {
         valueField: ''
     }
 
-    numbersOnlyValue = (text) => {
+    numbersOnlyValue = text => {
         let newText = '';
         let numbers = '-.0123456789';
     

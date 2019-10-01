@@ -11,7 +11,7 @@ export default class Anonymous extends Component {
         screen: 'login'
     }
 
-    changeScreen = (moveToScreen) => this.setState({ screen: moveToScreen })
+    changeScreen = moveToScreen => this.setState({ screen: moveToScreen })
 
     render() {
         return (

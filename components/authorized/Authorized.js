@@ -22,15 +22,15 @@ export default class Authorized extends Component {
     }
     ref = firebase.firestore().collection('users').doc(this.props.user.uid)
 
-    componentDidMount = () => {
+    componentDidMount = _ => {
         this.ref.get().then(doc => {
             this.setState({ jars: doc.data()['jars'] })
         }).catch(err => Alert.alert('Error', err.toString()));
     }
 
-    changeView = (view) => this.setState({ view: view })
+    changeView = view => this.setState({ view: view })
 
-    editJar = (jar) => {
+    editJar = jar => {
         this.setState({
             view: 'jarfocus',
             focusedJar: jar
@@ -90,7 +90,7 @@ export default class Authorized extends Component {
         }
     }
 
-    deleteJar = (id) => {
+    deleteJar = id => {
         Alert.alert(
             'Warning',
             "You are about to delete a jar. This action is irreversible! Are you sure you want to continue?",

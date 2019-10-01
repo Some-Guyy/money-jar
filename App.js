@@ -13,13 +13,13 @@ export default class App extends Component {
   unsubscriber = null;
   ref = firebase.firestore().collection('users');
 
-  componentDidMount = () => {
+  componentDidMount = _ => {
     this.unsubscriber = firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
     });
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount = _ => {
     if (this.unsubscriber) {
       this.unsubscriber();
     }
@@ -47,7 +47,7 @@ export default class App extends Component {
     }
   }
 
-  logout = () => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))
+  logout = _ => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))
 
   render() {
     return (

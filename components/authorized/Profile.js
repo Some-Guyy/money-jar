@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ViewFadeIn from '../utilities/ViewFadeIn';
 
 export default class Profile extends Component {
-    jarArray = this.props.jars.map((jar) => (jar.value));
+    jarArray = this.props.jars.map(jar => jar.value);
 
     render() {
         return (
