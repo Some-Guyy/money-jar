@@ -47,7 +47,7 @@ export default class App extends Component {
     }
   }
 
-  logout = () => firebase.auth().signOut()
+  logout = () => firebase.auth().signOut().catch(err => Alert.alert('Error', err.toString()))
 
   render() {
     return (
