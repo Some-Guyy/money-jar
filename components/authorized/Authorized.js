@@ -101,7 +101,7 @@ export default class Authorized extends Component {
                 },
                 {
                     text: 'Delete',
-                    onPress: () => {
+                    onPress: _ => {
                         this.setState({ jars: [...this.state.jars.filter(jar => jar.id !== id)] })
                         this.ref.set({ jars: this.state.jars })
                         this.setState({
