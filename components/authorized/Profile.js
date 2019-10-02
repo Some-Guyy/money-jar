@@ -45,7 +45,7 @@ export default class Profile extends Component {
                             {'\n\n'}Reset Password{'\n'}
                         </Text>
                     </TouchableOpacity>
-                    {!this.state.deletingAcc ? <DeleteAccNotice toggleDeletingAcc={this.toggleDeletingAcc} /> : <DeleteAccInput />}
+                    {!this.state.deletingAcc ? <DeleteAccNotice toggleDeletingAcc={this.toggleDeletingAcc} /> : <DeleteAccInput deleteAcc={this.props.deleteAcc} />}
                 </View>
                 <TouchableNativeFeedback onPress={this.props.logout.bind(this)} background={TouchableNativeFeedback.Ripple()}>
                     <View style={{ height: '9%', width: '30%', alignItems: 'center', backgroundColor: warnColor, padding: 10 }}>
@@ -84,7 +84,7 @@ class DeleteAccInput extends Component {
                 </Text>
                 <TextInput value={this.state.passwordField} secureTextEntry={true} placeholder={'Confirm Password'} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { height: '17%', width: '50%', borderColor: dominantColor, borderWidth: 1, textAlign: 'left' }]} />
                 <View style={{ height: '5%' }} />
-                <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple()}>
+                <TouchableNativeFeedback onPress={this.props.deleteAcc.bind(this, this.state.passwordField)} background={TouchableNativeFeedback.Ripple()}>
                     <View style={{ height: '22%', width: '30%', alignItems: 'center', justifyContent: 'center', backgroundColor: warnColor, padding: 10 }}>
                         <Text style={[styles.bodyText, { color: accentColor }]}>Delete{'\n'}Account</Text>
                     </View>
@@ -106,9 +106,14 @@ Profile.propTypes = {
     user: PropTypes.object.isRequired,
     jars: PropTypes.array,
     logout: PropTypes.func.isRequired,
-    resetPwd: PropTypes.func.isRequired
+    resetPwd: PropTypes.func.isRequired,
+    deleteAcc: PropTypes.func.isRequired
 }
 
 DeleteAccNotice.propTypes = {
     toggleDeletingAcc: PropTypes.func.isRequired
+}
+
+DeleteAccInput.propTypes = {
+    deleteAcc: PropTypes.func.isRequired
 }

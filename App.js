@@ -95,13 +95,31 @@ export default class App extends Component {
     { cancelable: true }
   )
 
+  deleteAcc = password => {
+    Alert.alert(
+        'Warning',
+        "This is a final confirmation, press 'DELETE' to completely delete your account and erase all of its info.",
+        [
+            {
+                text: 'Cancel',
+                style: 'cancel'
+            },
+            {
+                text: 'Delete',
+                onPress: _ => Alert.alert('adf', password)
+            }
+        ],
+        { cancelable: true }
+    );
+}
+
   render() {
     return (
       <ImageBackground source={require('./assets/images/background.jpg')} style={{ flex: 1 }}>
         <Header header={'Money Jar'} />
         {this.state.user === null || !this.state.user.emailVerified
           ? <Anonymous signup={this.signup} login={this.login} />
-          : <Authorized user={this.state.user} logout={this.logout} resetPwd={this.resetPwd} />
+          : <Authorized user={this.state.user} logout={this.logout} resetPwd={this.resetPwd} deleteAcc={this.deleteAcc} />
         }
       </ImageBackground>
     );
