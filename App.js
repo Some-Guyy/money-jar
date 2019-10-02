@@ -44,7 +44,7 @@ export default class App extends Component {
   }
 
   login = (email, password) => {
-    if (email == '' || password == '') {
+    if (email === '' || password === '') {
       Alert.alert('Error', "Fields must not be empty!")
     } else {
       firebase.auth().signInWithEmailAndPassword(email, password)
@@ -96,22 +96,40 @@ export default class App extends Component {
   )
 
   deleteAcc = password => {
-    Alert.alert(
+    const email = this.state.user.email
+    const credentials = firebase.auth.EmailAuthProvider.credential(
+      email,
+      password
+    )
+
+    if (password === '') {
+      Alert.alert('Error', "Please enter your password to authorize the deletion of your account.");
+    } else {
+      Alert.alert(
         'Warning',
         "This is a final confirmation, press 'DELETE' to completely delete your account and erase all of its info.",
         [
-            {
-                text: 'Cancel',
-                style: 'cancel'
-            },
-            {
-                text: 'Delete',
-                onPress: _ => Alert.alert('adf', password)
-            }
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Delete',
+            onPress: _ => this.state.user.reauthenticateWithCredential(credentials)
+              .then(_ => this.ref.doc(this.state.user.uid).delete()
+                .then(_ => this.state.user.delete()
+                  .then(_ => Alert.alert('Success', `Successfully deleted your ${email} account. Thank you for using Money Jar!`))
+                  .catch(err => Alert.alert('Error', "Your data was successfully deleted but your account wasn't. Please contact the developer to solve this issue.\n" + err.toString()))
+                )
+                .catch(err => Alert.alert('Error', err.toString()))
+              )
+              .catch(err => Alert.alert('Error', err.toString()))
+          }
         ],
         { cancelable: true }
-    );
-}
+      );
+    }
+  }
 
   render() {
     return (

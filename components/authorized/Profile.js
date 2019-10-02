@@ -82,7 +82,7 @@ class DeleteAccInput extends Component {
                     <Text>You are required to confirm your password if you wish to delete your account. Warning: This action is </Text>
                     <Text style={{ color: warnColor }}>irreversible!{'\n'}</Text>
                 </Text>
-                <TextInput value={this.state.passwordField} secureTextEntry={true} placeholder={'Confirm Password'} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { height: '17%', width: '50%', borderColor: dominantColor, borderWidth: 1, textAlign: 'left' }]} />
+                <TextInput value={this.state.passwordField} onSubmitEditing={this.props.deleteAcc.bind(this, this.state.passwordField)} secureTextEntry={true} placeholder={'Confirm Password'} onChangeText={text => { this.setState({ passwordField: text }) }} style={[styles.bodyText, { height: '17%', width: '50%', borderColor: dominantColor, borderWidth: 1, textAlign: 'left' }]} />
                 <View style={{ height: '5%' }} />
                 <TouchableNativeFeedback onPress={this.props.deleteAcc.bind(this, this.state.passwordField)} background={TouchableNativeFeedback.Ripple()}>
                     <View style={{ height: '22%', width: '30%', alignItems: 'center', justifyContent: 'center', backgroundColor: warnColor, padding: 10 }}>
