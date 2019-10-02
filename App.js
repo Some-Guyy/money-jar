@@ -91,7 +91,8 @@ export default class App extends Component {
           .then(Alert.alert('Success', `Email for resetting password successfully sent to ${this.state.user.email}.`))
           .catch(err => Alert.alert('Error', err.toString()))
       }
-    ]
+    ],
+    { cancelable: true }
   )
 
   render() {

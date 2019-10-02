@@ -110,7 +110,8 @@ export default class Authorized extends Component {
                         })
                     }
                 }
-            ]
+            ],
+            { cancelable: true }
         );
     }
 
