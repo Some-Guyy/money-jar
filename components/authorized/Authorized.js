@@ -43,7 +43,7 @@ export default class Authorized extends Component {
         } else {
             this.state.jars.map(jar => {
                 if (jar.id === id) {
-                    jar.value = parseFloat(jar.value) + parseFloat(valueToAdd);
+                    jar.value = parseFloat(jar.value).toFixed(2) + parseFloat(valueToAdd).toFixed(2);
                 }
             });
             this.ref.set({ jars: this.state.jars });
