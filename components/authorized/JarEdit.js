@@ -7,7 +7,7 @@ import ViewFadeIn from '../utilities/ViewFadeIn';
 export default class JarEdit extends Component {
     state = {
         nameField: this.props.focusedJar.name,
-        valueField: this.props.focusedJar.value.toString(),
+        valueField: this.props.focusedJar.value.toFixed(2),
         addField: ''
     }
 

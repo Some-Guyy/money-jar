@@ -36,7 +36,7 @@ export default class Profile extends Component {
                     <Text style={[styles.bodyText, { fontSize: 24 }]}>Profile</Text>
                     <Text style={styles.bodyText}>Email: {this.props.user.email}</Text>
                     <Text style={styles.bodyText}>Jar Net Worth{
-                        isNaN(this.jarArray.reduce((accumulator, currentValue) => { return parseFloat(accumulator) + parseFloat(currentValue) }, 0).toFixed(2))
+                        isNaN(this.jarArray.reduce((accumulator, currentValue) => { return accumulator + currentValue }, 0).toFixed(2))
                             ? " hasn't yet loaded, please go back to the Jars tab below to load your jars before coming back."
                             : ": $" + this.jarArray.reduce((accumulator, currentValue) => { return parseFloat(accumulator) + parseFloat(currentValue) }, 0).toFixed(2)
                     }</Text>

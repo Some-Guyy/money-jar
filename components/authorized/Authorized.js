@@ -43,7 +43,7 @@ export default class Authorized extends Component {
         } else {
             this.state.jars.map(jar => {
                 if (jar.id === id) {
-                    jar.value = parseFloat(jar.value).toFixed(2) + parseFloat(valueToAdd).toFixed(2);
+                    jar.value = jar.value + parseFloat(valueToAdd);
                 }
             });
             this.ref.set({ jars: this.state.jars });
@@ -61,7 +61,7 @@ export default class Authorized extends Component {
             const newJar = {
                 id: uuid.v4(),
                 name: name,
-                value: value
+                value: parseFloat(value)
             }
             this.state.jars.push(newJar);
             this.ref.set({ jars: this.state.jars });
@@ -79,7 +79,7 @@ export default class Authorized extends Component {
             this.state.jars.map(jar => {
                 if (jar.id === id) {
                     jar.name = newName;
-                    jar.value = newValue;
+                    jar.value = parseFloat(newValue);
                 }
             });
             this.ref.set({ jars: this.state.jars });
