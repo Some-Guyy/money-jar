@@ -15,7 +15,7 @@ When rebuilding version 2 via React Native, several other functions were added i
 
 Firebase is used for the authentication and database (*cloud firestore*).
 
-<img src="https://media.discordapp.net/attachments/625686400636813352/625691910329335809/Screenshot_20190923-215407.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691911566393354/Screenshot_20190923-215546.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691909825757204/Screenshot_20190923-215535.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691910979321867/Screenshot_20190923-215541.jpg?width=377&height=670" width="150" />
+<img src="https://media.discordapp.net/attachments/625686400636813352/636087380234731520/Screenshot_20191022-142044.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087379769294858/Screenshot_20191022-142249.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087379266109451/Screenshot_20191022-142304.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087378468929567/Screenshot_20191022-142310.jpg?width=372&height=662" width="150" />
 
 ## Setup
 ### Pre-requisites:
