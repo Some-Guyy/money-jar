@@ -1,9 +1,9 @@
 # MoneyJar
-<img src="https://media.discordapp.net/attachments/625686400636813352/625687865430638608/logo.png" width="100" />
+<img src="assets/images/readme/mj_logo.webp" width="100" />
 
 MoneyJar, a money manager. Originally made on Android Studio for a school project (*version 1*).
 
-<img src="https://media.discordapp.net/attachments/625686400636813352/625687474240225280/Screenshot_20190908-135633.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625687474685083678/Screenshot_20190908-135557.jpg?width=377&height=670" width="150" />
+<img src="assets/images/readme/old_mj1.webp" width="150" /> <img src="assets/images/readme/old_mj2.webp" width="150" />
 
 It has now been rebuilt from scratch using [React Native](https://facebook.github.io/react-native/) v0.60.
 ## Information
@@ -15,7 +15,7 @@ When rebuilding version 2 via React Native, several other functions were added i
 
 Firebase is used for the authentication and database (*cloud firestore*).
 
-<img src="https://media.discordapp.net/attachments/625686400636813352/636087380234731520/Screenshot_20191022-142044.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/625691912069971968/Screenshot_20190923-215527.jpg?width=377&height=670" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087379769294858/Screenshot_20191022-142249.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087379266109451/Screenshot_20191022-142304.jpg?width=372&height=662" width="150" /> <img src="https://media.discordapp.net/attachments/625686400636813352/636087378468929567/Screenshot_20191022-142310.jpg?width=372&height=662" width="150" />
+<img src="assets/images/readme/mj1.webp" width="150" /> <img src="assets/images/readme/mj2.webp" width="150" /> <img src="assets/images/readme/mj3.webp" width="150" /> <img src="assets/images/readme/mj4.webp" width="150" /> <img src="assets/images/readme/mj5.webp" width="150" />
 
 ## Setup
 ### Pre-requisites:
